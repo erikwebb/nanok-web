@@ -42,8 +42,6 @@
     }
   </script>
 
-  <!-- Cloudflare Turnstile Anti-Bot Security -->
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
   <style>
     body {
@@ -351,123 +349,62 @@
       </div>
     </section>
 
-    <!-- Confidential Contact Form & Scheduling (Hardened with Cloudflare Turnstile) -->
+    <!-- Direct Inquiry & Scheduling -->
     <section id="contact" class="border-t swiss-border pt-14 pb-12 space-y-8 scroll-mt-24">
       <div class="border-b swiss-border pb-4">
         <span class="text-xs font-mono text-neutral-500 uppercase tracking-widest block">04 // Direct Inquiry</span>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mt-1">Initiate a Conversation</h2>
-        <p class="text-xs sm:text-sm text-neutral-500 mt-1">Schedule directly or submit a confidential project inquiry. No email exposure.</p>
+        <p class="text-xs sm:text-sm text-neutral-500 mt-1">Book an introductory meeting or reach out directly.</p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
         
         <!-- Option A: Direct Reclaim Calendar Link -->
-        <div class="lg:col-span-5 swiss-card p-7 sm:p-8 rounded-2xl space-y-5">
-          <div class="space-y-1">
-            <span class="text-[11px] font-mono uppercase tracking-wider text-neutral-500 font-semibold">Option A // Direct Calendar</span>
-            <h3 class="text-lg font-bold text-neutral-900">Schedule an Intro Call</h3>
-          </div>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            Skip scheduling friction and book a 30-minute introductory meeting directly on my calendar via Reclaim AI.
-          </p>
-
-          <div class="space-y-2 text-xs font-mono text-neutral-500 pt-2 border-t swiss-border">
-            <div>✓ Real-time calendar availability</div>
-            <div>✓ Mutual NDA available on request</div>
-            <div>✓ Eastern Time (Richmond, VA)</div>
+        <div class="swiss-card p-7 sm:p-8 rounded-2xl flex flex-col justify-between space-y-6">
+          <div class="space-y-3">
+            <div class="space-y-1">
+              <span class="text-[11px] font-mono uppercase tracking-wider text-neutral-500 font-semibold">Option A // Direct Calendar</span>
+              <h3 class="text-lg font-bold text-neutral-900">Schedule an Intro Call</h3>
+            </div>
+            <p class="text-xs text-neutral-600 leading-relaxed">
+              Book a 30-minute introductory meeting directly on my calendar via Reclaim.
+            </p>
           </div>
 
-          <div class="pt-3">
+          <div class="pt-2">
             <a href="https://app.reclaim.ai/m/erikwebb/flexible-quick-meeting" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center space-x-2 text-xs font-bold text-white bg-neutral-900 hover:bg-black px-5 py-3 rounded-lg transition shadow-sm">
               <span>Open Calendar Scheduler ↗</span>
             </a>
           </div>
         </div>
 
-        <!-- Option B: Hardened Confidential Web Form (Turnstile Protected) -->
-        <div class="lg:col-span-7 swiss-card p-7 sm:p-8 rounded-2xl space-y-5">
-          <div class="space-y-1">
-            <span class="text-[11px] font-mono uppercase tracking-wider text-neutral-500 font-semibold">Option B // Confidential Note</span>
-            <h3 class="text-lg font-bold text-neutral-900">Send a Project Inquiry</h3>
-          </div>
-          <p class="text-xs text-neutral-600 leading-relaxed">
-            Briefly describe your team, technical challenges, or desired advisory scope. Inquiries are reviewed directly by Erik Webb within one business day.
-          </p>
-
-          <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4 text-xs pt-1">
-            
-            <!-- Anti-Spam Honeypot (Invisible to humans) -->
-            <input type="text" name="honeypot" class="hidden" tabindex="-1" autocomplete="off">
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div class="space-y-1.5">
-                <label for="form-name" class="font-mono text-neutral-600 font-semibold">Your Name *</label>
-                <input type="text" id="form-name" name="name" required placeholder="Alex Morgan" class="w-full px-3.5 py-2.5 rounded-lg border swiss-border text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-900 transition bg-neutral-50/50">
-              </div>
-
-              <div class="space-y-1.5">
-                <label for="form-email" class="font-mono text-neutral-600 font-semibold">Work Email *</label>
-                <input type="email" id="form-email" name="email" required placeholder="alex@company.com" class="w-full px-3.5 py-2.5 rounded-lg border swiss-border text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-900 transition bg-neutral-50/50">
-              </div>
+        <!-- Option B: Direct Inquiry (LinkedIn & Email) -->
+        <div class="swiss-card p-7 sm:p-8 rounded-2xl flex flex-col justify-between space-y-6">
+          <div class="space-y-3">
+            <div class="space-y-1">
+              <span class="text-[11px] font-mono uppercase tracking-wider text-neutral-500 font-semibold">Option B // Direct Message</span>
+              <h3 class="text-lg font-bold text-neutral-900">Message on LinkedIn or Email</h3>
             </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div class="space-y-1.5">
-                <label for="form-org" class="font-mono text-neutral-600 font-semibold">Company / Organization</label>
-                <input type="text" id="form-org" name="organization" placeholder="Acme Systems" class="w-full px-3.5 py-2.5 rounded-lg border swiss-border text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-900 transition bg-neutral-50/50">
-              </div>
-
-              <div class="space-y-1.5">
-                <label for="form-service" class="font-mono text-neutral-600 font-semibold">Primary Area of Interest</label>
-                <select id="form-service" name="service" class="w-full px-3.5 py-2.5 rounded-lg border swiss-border text-neutral-900 focus:outline-none focus:border-neutral-900 transition bg-neutral-50/50">
-                  <option value="Distributed Systems Architecture">Distributed Systems Architecture</option>
-                  <option value="Principal Engineer Advisory">Principal Engineer Guidance</option>
-                  <option value="Engineering Leadership Mentorship">Engineering Leadership Mentorship</option>
-                  <option value="Sensible AI &amp; SDLC Velocity">Sensible AI &amp; SDLC Velocity</option>
-                  <option value="General Exploration">General Exploration</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="space-y-1.5">
-              <label for="form-message" class="font-mono text-neutral-600 font-semibold">Project Overview or Challenge *</label>
-              <textarea id="form-message" name="message" rows="4" required placeholder="Describe your team size, stack, architecture bottleneck, or timeline..." class="w-full px-3.5 py-2.5 rounded-lg border swiss-border text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-900 transition resize-y bg-neutral-50/50"></textarea>
-            </div>
-
-            <!-- Cloudflare Turnstile Anti-Bot Security Widget -->
-            <div class="pt-1">
-              <div class="cf-turnstile" data-sitekey="0x4AAAAAAF36-ycpUqHxfogk" data-theme="light"></div>
-            </div>
-
-            <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
-              <button type="submit" id="submit-btn" class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 font-bold px-6 py-2.5 rounded-lg bg-neutral-900 hover:bg-black text-white transition shadow-sm">
-                <span>Send Inquiry</span>
-                <span aria-hidden="true">→</span>
-              </button>
-
-              <span id="form-status" class="text-xs font-mono text-neutral-400">
-                Turnstile hardened • No spam guarantee
-              </span>
-            </div>
-
-          </form>
-
-          <!-- Success State -->
-          <div id="form-success" class="hidden py-8 text-center space-y-3">
-            <div class="w-10 h-10 rounded-full bg-neutral-100 border swiss-border mx-auto flex items-center justify-center text-neutral-900 font-bold text-base">
-              ✓
-            </div>
-            <h4 class="text-base font-bold text-neutral-900">Inquiry Received</h4>
-            <p class="text-xs text-neutral-600 max-w-sm mx-auto leading-relaxed">
-              Thank you for reaching out. Erik will review your inquiry and follow up within one business day.
+            <p class="text-xs text-neutral-600 leading-relaxed">
+              Connect on LinkedIn or send an email to discuss an advisory engagement or project inquiry.
             </p>
-            <div class="pt-2">
-              <button type="button" onclick="resetForm()" class="text-xs font-mono text-neutral-900 underline">
-                Send another message ←
+          </div>
+
+          <div class="pt-2 space-y-2.5">
+            <a href="https://www.linkedin.com/in/erikwebb" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center space-x-2 text-xs font-bold text-white bg-neutral-900 hover:bg-black px-5 py-3 rounded-lg transition shadow-sm">
+              <span>Connect on LinkedIn ↗</span>
+            </a>
+            
+            <div class="flex items-center gap-2">
+              <a href="#" onclick="openEmail(event)" class="flex-1 inline-flex items-center justify-center space-x-2 text-xs font-semibold text-neutral-800 bg-neutral-100 hover:bg-neutral-200 border swiss-border px-4 py-2.5 rounded-lg transition">
+                <span>Email Inquiry</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+              <button type="button" onclick="copyEmail(this)" aria-label="Copy email address" class="inline-flex items-center justify-center px-3.5 py-2.5 text-xs font-mono font-medium text-neutral-700 bg-neutral-100 hover:bg-neutral-200 border swiss-border rounded-lg transition" title="Copy email address to clipboard">
+                <span class="copy-text">Copy</span>
               </button>
             </div>
           </div>
-
         </div>
 
       </div>
@@ -498,72 +435,31 @@
     </div>
   </footer>
 
-  <!-- Form Script -->
+  <!-- Script for Email Actions (Dynamic Obfuscation) -->
   <script>
-    async function handleContactSubmit(event) {
-      event.preventDefault();
-      const form = document.getElementById('contact-form');
-      const submitBtn = document.getElementById('submit-btn');
-      const statusEl = document.getElementById('form-status');
-      const successEl = document.getElementById('form-success');
-
-      submitBtn.disabled = true;
-      submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
-      statusEl.textContent = 'Verifying and sending...';
-
-      const formData = new FormData(form);
-      const payload = Object.fromEntries(formData.entries());
-
-      try {
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        let data = null;
-        try {
-          data = await response.json();
-        } catch (e) {
-          data = null;
-        }
-
-        if (response.ok && data && data.success) {
-          form.classList.add('hidden');
-          successEl.classList.remove('hidden');
-        } else {
-          statusEl.textContent = (data && data.error) ? data.error : 'Submission error. Please try again.';
-          submitBtn.disabled = false;
-          submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-          if (window.turnstile) {
-            window.turnstile.reset();
-          }
-        }
-      } catch (err) {
-        statusEl.textContent = 'Network error. Please check your connection and try again.';
-        submitBtn.disabled = false;
-        submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-        if (window.turnstile) {
-          window.turnstile.reset();
-        }
-      }
+    function getContactEmail() {
+      // Base64 decoded at runtime to protect from GitHub code scrapers
+      return atob('ZXJpa0BuYW5vay5jb25zdWx0aW5n');
     }
 
-    function resetForm() {
-      const form = document.getElementById('contact-form');
-      const submitBtn = document.getElementById('submit-btn');
-      const statusEl = document.getElementById('form-status');
-      const successEl = document.getElementById('form-success');
+    function openEmail(event) {
+      if (event) event.preventDefault();
+      var mail = getContactEmail();
+      var subject = encodeURIComponent('Inquiry: Architecture & Advisory');
+      window.open('mailto:' + mail + '?subject=' + subject, '_blank');
+    }
 
-      form.reset();
-      form.classList.remove('hidden');
-      successEl.classList.add('hidden');
-      submitBtn.disabled = false;
-      submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-      statusEl.textContent = 'Turnstile hardened • No spam guarantee';
-      if (window.turnstile) {
-        window.turnstile.reset();
-      }
+    function copyEmail(btn) {
+      navigator.clipboard.writeText(getContactEmail()).then(function() {
+        var span = btn.querySelector('.copy-text');
+        if (span) {
+          var original = span.textContent;
+          span.textContent = '✓ Copied';
+          setTimeout(function() {
+            span.textContent = original;
+          }, 2000);
+        }
+      });
     }
   </script>
 

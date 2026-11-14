@@ -12,16 +12,18 @@ describe('Static Security & Regression Audit', () => {
   const indexHtml = fs.readFileSync(path.join(rootDir, 'index.html'), 'utf8');
   const headersConfig = fs.readFileSync(path.join(rootDir, '_headers'), 'utf8');
 
-  test('ensures no raw email address or mailto links exist in index.html', () => {
-    // Prohibit mailto: links
-    assert.doesNotMatch(indexHtml, /mailto:/i, 'index.html must not contain mailto links');
+  test('ensures direct inquiry channels exist with obfuscated email, LinkedIn, and Reclaim', () => {
+    // Prohibit raw email addresses and raw mailto links in HTML
+    assert.doesNotMatch(indexHtml, /[a-zA-Z0-9._%+-]+@nanok\.consulting/i, 'index.html must not contain raw nanok.consulting email');
+    assert.doesNotMatch(indexHtml, /mailto:[a-zA-Z0-9._%+-]+/i, 'index.html must not contain raw mailto links');
+    // Ensure dynamic Base64 encoded email string is present
+    assert.match(indexHtml, /ZXJpa0BuYW5vay5jb25zdWx0aW5n/, 'index.html must contain Base64 encoded contact email');
+    assert.match(indexHtml, /https:\/\/www\.linkedin\.com\/in\/erikwebb/, 'index.html must link to LinkedIn');
+    assert.match(indexHtml, /https:\/\/app\.reclaim\.ai\/m\/erikwebb\/flexible-quick-meeting/, 'index.html must link to Reclaim');
+  });
 
-    // Prohibit nanok.consulting email addresses
-    assert.doesNotMatch(
-      indexHtml,
-      /[a-zA-Z0-9._%+-]+@nanok\.consulting/i,
-      'index.html must not contain raw @nanok.consulting email addresses'
-    );
+  test('ensures no Mutual NDA mentions exist in index.html', () => {
+    assert.doesNotMatch(indexHtml, /\bNDA\b/i, 'index.html must not mention NDA');
   });
 
   test('ensures all internal navigation anchor links resolve to valid element IDs', () => {
@@ -54,7 +56,6 @@ describe('Static Security & Regression Audit', () => {
   });
 
   test('ensures Content-Security-Policy permits required external sources', () => {
-    assert.match(headersConfig, /https:\/\/challenges\.cloudflare\.com/, 'CSP must allow Cloudflare Turnstile');
     assert.match(headersConfig, /https:\/\/cdn\.tailwindcss\.com/, 'CSP must allow Tailwind CDN');
     assert.match(headersConfig, /https:\/\/fonts\.googleapis\.com/, 'CSP must allow Google Fonts CSS');
     assert.match(headersConfig, /https:\/\/fonts\.gstatic\.com/, 'CSP must allow Google Fonts font files');
@@ -68,13 +69,5 @@ describe('Static Security & Regression Audit', () => {
     assert.match(indexHtml, /<meta property="og:description"/, 'OpenGraph description required');
     assert.match(indexHtml, /<meta property="og:image"/, 'OpenGraph image required');
     assert.match(indexHtml, /<link rel="icon"/, 'Favicon link tag required');
-  });
-
-  test('ensures Turnstile widget is embedded with production sitekey', () => {
-    assert.match(
-      indexHtml,
-      /cf-turnstile.*data-sitekey="0x4AAAAAAF36-ycpUqHxfogk"/,
-      'Production Turnstile widget with sitekey must be present'
-    );
   });
 });
