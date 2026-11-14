@@ -521,19 +521,31 @@
           body: JSON.stringify(payload)
         });
 
-        const data = await response.json();
+        let data = null;
+        try {
+          data = await response.json();
+        } catch (e) {
+          data = null;
+        }
 
-        if (response.ok && data.success) {
+        if (response.ok && data && data.success) {
           form.classList.add('hidden');
           successEl.classList.remove('hidden');
         } else {
-          statusEl.textContent = data.error || 'Submission error. Please try again.';
+          statusEl.textContent = (data && data.error) ? data.error : 'Submission error. Please try again.';
           submitBtn.disabled = false;
           submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+          if (window.turnstile) {
+            window.turnstile.reset();
+          }
         }
       } catch (err) {
-        form.classList.add('hidden');
-        successEl.classList.remove('hidden');
+        statusEl.textContent = 'Network error. Please check your connection and try again.';
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        if (window.turnstile) {
+          window.turnstile.reset();
+        }
       }
     }
 

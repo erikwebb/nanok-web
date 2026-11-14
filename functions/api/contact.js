@@ -1,8 +1,46 @@
 // Cloudflare Pages Function: /api/contact
-// Hardened with Cloudflare Turnstile verification, honeypot, and rate validation.
+// Hardened with Cloudflare Turnstile verification, honeypot, payload limits, and origin validation.
+
+const MAX_PAYLOAD_BYTES = 64 * 1024; // 64 KB limit
+const MAX_FIELD_LENGTHS = {
+  name: 100,
+  email: 254,
+  organization: 100,
+  service: 100,
+  message: 5000
+};
 
 export async function onRequestPost({ request, env }) {
   try {
+    // 1. Origin / Referer validation (Defense-in-depth against unauthorized cross-site POSTs)
+    const origin = request.headers.get("origin");
+    const host = request.headers.get("host");
+    if (origin && host) {
+      try {
+        const originUrl = new URL(origin);
+        if (originUrl.host !== host) {
+          return new Response(JSON.stringify({ success: false, error: "Cross-origin request forbidden." }), {
+            status: 403,
+            headers: { "Content-Type": "application/json" }
+          });
+        }
+      } catch {
+        return new Response(JSON.stringify({ success: false, error: "Invalid Origin header." }), {
+          status: 400,
+          headers: { "Content-Type": "application/json" }
+        });
+      }
+    }
+
+    // 2. Payload size bounding
+    const contentLength = parseInt(request.headers.get("content-length") || "0", 10);
+    if (contentLength > MAX_PAYLOAD_BYTES) {
+      return new Response(JSON.stringify({ success: false, error: "Payload exceeds size limit." }), {
+        status: 413,
+        headers: { "Content-Type": "application/json" }
+      });
+    }
+
     const contentType = request.headers.get("content-type") || "";
     let body = {};
 
@@ -11,12 +49,31 @@ export async function onRequestPost({ request, env }) {
     } else if (contentType.includes("application/x-www-form-urlencoded")) {
       const formData = await request.formData();
       body = Object.fromEntries(formData.entries());
+    } else {
+      return new Response(JSON.stringify({ success: false, error: "Unsupported Media Type." }), {
+        status: 415,
+        headers: { "Content-Type": "application/json" }
+      });
     }
 
-    const { name, email, organization, service, message, honeypot } = body;
-    const turnstileToken = body["cf-turnstile-response"] || body.turnstileToken;
+    if (!body || typeof body !== "object") {
+      return new Response(JSON.stringify({ success: false, error: "Invalid request body." }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" }
+      });
+    }
 
-    // 1. Spam Honeypot Check
+    // Extract, trim, and type-guard fields
+    const name = typeof body.name === "string" ? body.name.trim() : "";
+    const email = typeof body.email === "string" ? body.email.trim() : "";
+    const organization = typeof body.organization === "string" ? body.organization.trim() : "";
+    const service = typeof body.service === "string" ? body.service.trim() : "";
+    const message = typeof body.message === "string" ? body.message.trim() : "";
+    const honeypot = typeof body.honeypot === "string" ? body.honeypot.trim() : body.honeypot;
+    const rawToken = body["cf-turnstile-response"] || body.turnstileToken;
+    const turnstileToken = typeof rawToken === "string" ? rawToken.trim() : "";
+
+    // 3. Spam Honeypot Check
     if (honeypot) {
       return new Response(JSON.stringify({ success: true, note: "Ignored spam" }), {
         status: 200,
@@ -24,7 +81,7 @@ export async function onRequestPost({ request, env }) {
       });
     }
 
-    // 2. Field Validation
+    // 4. Field Validation & Length Bounds
     if (!name || !email || !message) {
       return new Response(JSON.stringify({ 
         success: false, 
@@ -35,7 +92,23 @@ export async function onRequestPost({ request, env }) {
       });
     }
 
-    // Basic email format check
+    if (
+      name.length > MAX_FIELD_LENGTHS.name ||
+      email.length > MAX_FIELD_LENGTHS.email ||
+      organization.length > MAX_FIELD_LENGTHS.organization ||
+      service.length > MAX_FIELD_LENGTHS.service ||
+      message.length > MAX_FIELD_LENGTHS.message
+    ) {
+      return new Response(JSON.stringify({ 
+        success: false, 
+        error: "Field length exceeds permitted limits." 
+      }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" }
+      });
+    }
+
+    // Email format check
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return new Response(JSON.stringify({ 
@@ -47,8 +120,19 @@ export async function onRequestPost({ request, env }) {
       });
     }
 
-    // 3. Cloudflare Turnstile Verification
-    const secretKey = env?.TURNSTILE_SECRET_KEY || "1x0000000000000000000000000000000AA";
+    // 5. Cloudflare Turnstile Verification (Fail-closed)
+    const secretKey = env?.TURNSTILE_SECRET_KEY;
+    if (!secretKey) {
+      console.error("[Configuration Error] TURNSTILE_SECRET_KEY is not configured.");
+      return new Response(JSON.stringify({ 
+        success: false, 
+        error: "Server configuration error. Please contact administrator." 
+      }), {
+        status: 500,
+        headers: { "Content-Type": "application/json" }
+      });
+    }
+
     if (!turnstileToken) {
       return new Response(JSON.stringify({ 
         success: false, 
@@ -68,12 +152,16 @@ export async function onRequestPost({ request, env }) {
 
       const verifyRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
         method: "POST",
-        body: verifyFormData
+        body: verifyFormData,
+        signal: AbortSignal.timeout(5000)
       });
       const verifyOutcome = await verifyRes.json();
       
       if (!verifyOutcome.success) {
-        console.warn("[Turnstile Failed]", verifyOutcome);
+        console.warn("[Turnstile Failed]", {
+          errorCodes: verifyOutcome["error-codes"],
+          timestamp: new Date().toISOString()
+        });
         return new Response(JSON.stringify({ 
           success: false, 
           error: "Security verification failed. Please try again." 
@@ -82,8 +170,20 @@ export async function onRequestPost({ request, env }) {
           headers: { "Content-Type": "application/json" }
         });
       }
+
+      // Hostname verification check
+      if (verifyOutcome.hostname && host && !host.includes(verifyOutcome.hostname) && !verifyOutcome.hostname.includes("nanok.consulting") && verifyOutcome.hostname !== "localhost") {
+        console.warn("[Turnstile Hostname Mismatch]", { expected: host, received: verifyOutcome.hostname });
+        return new Response(JSON.stringify({ 
+          success: false, 
+          error: "Verification validation error." 
+        }), {
+          status: 403,
+          headers: { "Content-Type": "application/json" }
+        });
+      }
     } catch (e) {
-      console.error("[Turnstile Error]", e);
+      console.error("[Turnstile Error]", e?.message || e);
       return new Response(JSON.stringify({ 
         success: false, 
         error: "Verification service temporarily unavailable. Please try again shortly." 
@@ -93,9 +193,8 @@ export async function onRequestPost({ request, env }) {
       });
     }
 
-    // Log received submission safely at the edge
-    console.log(`[Contact Form Received] From: ${name} <${email}> | Org: ${organization || 'N/A'} | Service: ${service || 'General'}`);
-    console.log(`[Message]: ${message}`);
+    // Safe operational telemetry logging (NO PII or message content)
+    console.log(`[Contact Form Received] Timestamp: ${new Date().toISOString()} | Service: ${service || 'General'} | MsgLength: ${message.length}`);
 
     return new Response(JSON.stringify({
       success: true,
@@ -106,6 +205,7 @@ export async function onRequestPost({ request, env }) {
     });
 
   } catch (err) {
+    console.error("[Contact Error]", err?.message || err);
     return new Response(JSON.stringify({ 
       success: false, 
       error: "An unexpected error occurred. Please try again." 
