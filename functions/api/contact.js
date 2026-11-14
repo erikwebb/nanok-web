@@ -48,35 +48,49 @@ export async function onRequestPost({ request, env }) {
     }
 
     // 3. Cloudflare Turnstile Verification
-    // Use env.TURNSTILE_SECRET_KEY or fallback to Cloudflare's standard test key
     const secretKey = env?.TURNSTILE_SECRET_KEY || "1x0000000000000000000000000000000AA";
-    if (turnstileToken && secretKey) {
-      try {
-        const ip = request.headers.get("cf-connecting-ip");
-        const verifyFormData = new FormData();
-        verifyFormData.append("secret", secretKey);
-        verifyFormData.append("response", turnstileToken);
-        if (ip) verifyFormData.append("remoteip", ip);
+    if (!turnstileToken) {
+      return new Response(JSON.stringify({ 
+        success: false, 
+        error: "Security verification required. Please complete the verification checkbox." 
+      }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" }
+      });
+    }
 
-        const verifyRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-          method: "POST",
-          body: verifyFormData
+    try {
+      const ip = request.headers.get("cf-connecting-ip");
+      const verifyFormData = new FormData();
+      verifyFormData.append("secret", secretKey);
+      verifyFormData.append("response", turnstileToken);
+      if (ip) verifyFormData.append("remoteip", ip);
+
+      const verifyRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+        method: "POST",
+        body: verifyFormData
+      });
+      const verifyOutcome = await verifyRes.json();
+      
+      if (!verifyOutcome.success) {
+        console.warn("[Turnstile Failed]", verifyOutcome);
+        return new Response(JSON.stringify({ 
+          success: false, 
+          error: "Security verification failed. Please try again." 
+        }), {
+          status: 403,
+          headers: { "Content-Type": "application/json" }
         });
-        const verifyOutcome = await verifyRes.json();
-        
-        if (!verifyOutcome.success) {
-          console.warn("[Turnstile Failed]", verifyOutcome);
-          return new Response(JSON.stringify({ 
-            success: false, 
-            error: "Security verification failed. Please try again." 
-          }), {
-            status: 403,
-            headers: { "Content-Type": "application/json" }
-          });
-        }
-      } catch (e) {
-        console.error("[Turnstile Error]", e);
       }
+    } catch (e) {
+      console.error("[Turnstile Error]", e);
+      return new Response(JSON.stringify({ 
+        success: false, 
+        error: "Verification service temporarily unavailable. Please try again shortly." 
+      }), {
+        status: 502,
+        headers: { "Content-Type": "application/json" }
+      });
     }
 
     // Log received submission safely at the edge
