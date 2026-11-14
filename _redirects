@@ -1,0 +1,2 @@
+# Redirect www to apex domain
+https://www.nanok.consulting/* https://nanok.consulting/:splat 301
