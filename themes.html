@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nanok Consulting — Visual Theme Comparison</title>
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #050505;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+    }
+    .dot-grid {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+  </style>
+</head>
+<body class="text-neutral-100 min-h-screen selection:bg-emerald-400 selection:text-black antialiased">
+  <div class="fixed inset-0 dot-grid pointer-events-none z-0"></div>
+
+  <!-- Header -->
+  <header class="border-b border-neutral-800 bg-black/90 sticky top-0 z-40 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <a href="./" class="w-9 h-9 rounded-xl bg-neutral-900 border border-neutral-700 flex items-center justify-center p-1.5 hover:border-emerald-500 transition">
+          <img src="assets/images/favicon.png" alt="Nanok" class="w-full h-full object-contain">
+        </a>
+        <div>
+          <h1 class="text-base font-bold text-white tracking-tight">Nanok Consulting</h1>
+          <p class="text-xs text-neutral-500 font-mono">Visual Theme Comparison Lab</p>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <a href="./" class="inline-flex items-center space-x-1.5 text-xs font-mono text-neutral-400 hover:text-white bg-neutral-900 border border-neutral-800 px-3.5 py-2 rounded-xl transition">
+          <span>← Back to Live Site</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10 space-y-12 relative z-10">
+    
+    <!-- Title & Instructions -->
+    <div class="space-y-3 border-b border-neutral-800 pb-8">
+      <div class="inline-flex items-center space-x-2 text-xs font-mono px-3 py-1 rounded-md bg-neutral-900 border border-neutral-800 text-neutral-400">
+        <span>4 Distinct Design Systems</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Choose Your Preferred Aesthetic
+      </h2>
+      <p class="text-neutral-400 text-sm max-w-2xl leading-relaxed">
+        Compare the 4 visual design directions below side-by-side. Click <strong class="text-white">"Set as Default"</strong> on any theme to lock it into your browser and open the live website.
+      </p>
+    </div>
+
+    <!-- 4 Theme Cards Grid -->
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+
+      <!-- ==============================================
+           THEME 1: Obsidian Emerald
+           ============================================== -->
+      <div class="rounded-3xl border border-neutral-800 bg-[#050505] overflow-hidden shadow-2xl flex flex-col justify-between">
+        <!-- Theme Header -->
+        <div class="p-6 sm:p-8 border-b border-neutral-800 bg-neutral-950/80 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-bold uppercase tracking-wider">
+                01 // Terminal Executive
+              </span>
+              <span class="text-xs text-neutral-500 font-mono">Current Default</span>
+            </div>
+            <h3 class="text-2xl font-extrabold text-white mt-1">Obsidian Emerald</h3>
+            <p class="text-xs text-neutral-400 mt-0.5">High-contrast technical rigor. Direct evolution of <code class="text-neutral-300">erikwebb.net</code>.</p>
+          </div>
+
+          <button onclick="activateAndGo('emerald')" class="inline-flex items-center space-x-1.5 text-xs font-bold text-black bg-emerald-400 hover:bg-emerald-300 px-4 py-2.5 rounded-xl transition shadow-lg shadow-emerald-500/10">
+            <span>Set as Default &amp; View Site →</span>
+          </button>
+        </div>
+
+        <!-- Live Visual Sample Mockup -->
+        <div class="p-6 sm:p-8 space-y-6 bg-[#050505] relative">
+          <!-- Mockup Hero -->
+          <div class="space-y-3">
+            <span class="text-[11px] font-mono uppercase tracking-widest text-emerald-400 font-bold">
+              00 // Strategic Technical Leadership
+            </span>
+            <h4 class="text-2xl font-extrabold text-white leading-tight">
+              Empowering Engineering <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-sky-400">Excellence</span>.
+            </h4>
+            <p class="text-xs text-neutral-300 leading-relaxed max-w-lg">
+              Partnering with engineering executives to architect scalable distributed systems and build high-performance technical organizations.
+            </p>
+          </div>
+
+          <!-- Mockup Badges -->
+          <div class="flex flex-wrap gap-2 text-[11px] font-mono">
+            <span class="px-2.5 py-1 rounded-md bg-[#0d0d0d] border border-[#222222] text-neutral-300">
+              <span class="text-emerald-400 font-bold">15+</span> Yrs Architecture
+            </span>
+            <span class="px-2.5 py-1 rounded-md bg-[#0d0d0d] border border-[#222222] text-neutral-300">
+              <span class="text-sky-400 font-bold">Ex-</span> Google • Meta • Pantheon
+            </span>
+            <span class="px-2.5 py-1 rounded-md bg-[#0d0d0d] border border-[#222222] text-neutral-300">
+              🎓 Georgia Tech
+            </span>
+          </div>
+
+          <!-- Mockup Component Card -->
+          <div class="rounded-2xl p-5 bg-[#0d0d0d] border border-[#222222] space-y-3 shadow-lg">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
+                01 // Architecture
+              </span>
+              <span class="text-[11px] font-mono text-neutral-500">Practice Area</span>
+            </div>
+            <h5 class="text-base font-bold text-white">Distributed Systems &amp; Cloud Modernization</h5>
+            <p class="text-xs text-neutral-400">High-concurrency infrastructure, latency profiling, and microservice decoupling.</p>
+            <div class="pt-2 flex items-center justify-between text-xs font-mono">
+              <span class="text-neutral-500">Audit / Sprint</span>
+              <span class="text-emerald-400 font-semibold">Book Consultation ↗</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Color Palette Spec -->
+        <div class="p-6 bg-neutral-950 border-t border-neutral-800/80 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-neutral-400">
+          <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-1.5">
+              <span class="w-3.5 h-3.5 rounded-full bg-[#050505] border border-neutral-700"></span>
+              <span>#050505</span>
+            </div>
+            <div class="flex items-center space-x-1.5">
+              <span class="w-3.5 h-3.5 rounded-full bg-[#0d0d0d] border border-neutral-700"></span>
+              <span>#0d0d0d</span>
+            </div>
+            <div class="flex items-center space-x-1.5">
+              <span class="w-3.5 h-3.5 rounded-full bg-[#10b981]"></span>
+              <span class="text-emerald-400 font-bold">#10b981</span>
+            </div>
+          </div>
+          <span class="text-neutral-500">Grid: White Dot Matrix</span>
+        </div>
+      </div>
+
+      <!-- ==============================================
+           THEME 2: Titanium Indigo
+           ============================================== -->
+      <div class="rounded-3xl border border-[#1e2538] bg-[#080a11] overflow-hidden shadow-2xl flex flex-col justify-between">
+        <!-- Theme Header -->
+        <div class="p-6 sm:p-8 border-b border-[#1e2538] bg-[#0b0e18]/80 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-indigo-500/15 text-indigo-400 border border-indigo-500/30 font-bold uppercase tracking-wider">
+                02 // Linear &bull; Vercel Pro
+              </span>
+              <span class="text-xs text-neutral-400 font-mono">Modern Infrastructure</span>
+            </div>
+            <h3 class="text-2xl font-extrabold text-white mt-1">Titanium Indigo</h3>
+            <p class="text-xs text-neutral-400 mt-0.5">Cool obsidian slate with electric indigo and sky cyan blueprint accents.</p>
+          </div>
+
+          <button onclick="activateAndGo('indigo')" class="inline-flex items-center space-x-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 px-4 py-2.5 rounded-xl transition shadow-lg shadow-indigo-500/20">
+            <span>Set as Default &amp; View Site →</span>
+          </button>
+        </div>
+
+        <!-- Live Visual Sample Mockup -->
+        <div class="p-6 sm:p-8 space-y-6 bg-[#080a11] relative">
+          <!-- Mockup Hero -->
+          <div class="space-y-3">
+            <span class="text-[11px] font-mono uppercase tracking-widest text-indigo-400 font-bold">
+              00 // Strategic Technical Leadership
+            </span>
+            <h4 class="text-2xl font-extrabold text-white leading-tight">
+              Empowering Engineering <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-sky-400">Excellence</span>.
+            </h4>
+            <p class="text-xs text-slate-300 leading-relaxed max-w-lg">
+              Partnering with engineering executives to architect scalable distributed systems and build high-performance technical organizations.
+            </p>
+          </div>
+
+          <!-- Mockup Badges -->
+          <div class="flex flex-wrap gap-2 text-[11px] font-mono">
+            <span class="px-2.5 py-1 rounded-md bg-[#0f131e] border border-[#1e2538] text-slate-300">
+              <span class="text-indigo-400 font-bold">15+</span> Yrs Architecture
+            </span>
+            <span class="px-2.5 py-1 rounded-md bg-[#0f131e] border border-[#1e2538] text-slate-300">
+              <span class="text-sky-400 font-bold">Ex-</span> Google • Meta • Pantheon
+            </span>
+            <span class="px-2.5 py-1 rounded-md bg-[#0f131e] border border-[#1e2538] text-slate-300">
+              🎓 Georgia Tech
+            </span>
+          </div>
+
+          <!-- Mockup Component Card -->
+          <div class="rounded-2xl p-5 bg-[#0f131e] border border-[#1e2538] space-y-3 shadow-lg">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/25 font-bold">
+                01 // Architecture
+              </span>
+              <span class="text-[11px] font-mono text-slate-500">Practice Area</span>
+            </div>
+            <h5 class="text-base font-bold text-white">Distributed Systems &amp; Cloud Modernization</h5>
+            <p class="text-xs text-slate-400">High-concurrency infrastructure, latency profiling, and microservice decoupling.</p>
+            <div class="pt-2 flex items-center justify-between text-xs font-mono">
+              <span class="text-slate-500">Audit / Sprint</span>
+              <span class="text-indigo-400 font-semibold">Book Consultation ↗</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Color Palette Spec -->
+        <div class="p-6 bg-[#0b0e18] border-t border-[#1e2538] flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-slate-400">
+          <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-1.5">
+              <span class="w-3.5 h-3.5 rounded-full bg-[#080a11] border border-slate-700"></span>
+              <span>#080a11</span>
+            </div>
+            <div class="flex items-center space-x-1.5">
+              <span class="w-3.5 h-3.5 rounded-full bg-[#0f131e] border border-slate-700"></span>
+              <span>#0f131e</span>
+            </div>
+            <div class="flex items-center space-x-1.5">
+              <span class="w-3.5 h-3.5 rounded-full bg-[#6366f1]"></span>
+              <span class="text-indigo-400 font-bold">#6366f1</span>
+            </div>
+          </div>
+          <span class="text-slate-500">Grid: Indigo Blueprint Matrix</span>
+        </div>
+      </div>
+
+      <!-- ==============================================
+           THEME 3: Nordic Amber
+           ============================================== -->
+      <div class="rounded-3xl border border-[#2b2724] bg-[#0d0c0b] overflow-hidden shadow-2xl flex flex-col justify-between">
+        <!-- Theme Header -->
+        <div class="p-6 sm:p-8 border-b border-[#2b2724] bg-[#12110f]/80 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-amber-500/15 text-amber-400 border border-amber-500/30 font-bold uppercase tracking-wider">
+                03 // Boutique Studio
+              </span>
+              <span class="text-xs text-stone-400 font-mono">Architectural Advisory</span>
+            </div>
+            <h3 class="text-2xl font-extrabold text-white mt-1">Nordic Amber</h3>
+            <p class="text-xs text-stone-400 mt-0.5">Warm dark basalt charcoal with burnished amber and gold craft highlights.</p>
+          </div>
+
+          <button onclick="activateAndGo('amber')" class="inline-flex items-center space-x-1.5 text-xs font-bold text-black bg-amber-400 hover:bg-amber-300 px-4 py-2.5 rounded-xl transition shadow-lg shadow-amber-500/20">
+            <span>Set as Default &amp; View Site →</span>
+          </button>
+        </div>
+
+        <!-- Live Visual Sample Mockup -->
+        <div class="p-6 sm:p-8 space-y-6 bg-[#0d0c0b] relative">
+          <!-- Mockup Hero -->
+          <div class="space-y-3">
+            <span class="text-[11px] font-mono uppercase tracking-widest text-amber-400 font-bold">
+              00 // Strategic Technical Leadership
+            </span>
+            <h4 class="text-2xl font-extrabold text-white leading-tight">
+              Empowering Engineering <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-300 to-rose-400">Excellence</span>.
+            </h4>
+            <p class="text-xs text-stone-300 leading-relaxed max-w-lg">
+              Partnering with engineering executives to architect scalable distributed systems and build high-performance technical organizations.
+            </p>
+          </div>
+
+          <!-- Mockup Badges -->
+          <div class="flex flex-wrap gap-2 text-[11px] font-mono">
+            <span class="px-2.5 py-1 rounded-md bg-[#161412] border border-[#2b2724] text-stone-300">
+              <span class="text-amber-400 font-bold">15+</span> Yrs Architecture
+            </span>
+            <span class="px-2.5 py-1 rounded-md bg-[#161412] border border-[#2b2724] text-stone-300">
+              <span class="text-sky-400 font-bold">Ex-</span> Google • Meta • Pantheon
+            </span>
+            <span class="px-2.5 py-1 rounded-md bg-[#161412] border border-[#2b2724] text-stone-300">
+              🎓 Georgia Tech
+            </span>
+          </div>
+
+          <!-- Mockup Component Card -->
+          <div class="rounded-2xl p-5 bg-[#161412] border border-[#2b2724] space-y-3 shadow-lg">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/25 font-bold">
+                01 // Architecture
+              </span>
+              <span class="text-[11px] font-mono text-stone-500">Practice Area</span>
+            </div>
+            <h5 class="text-base font-bold text-white">Distributed Systems &amp; Cloud Modernization</h5>
+            <p class="text-xs text-stone-400">High-concurrency infrastructure, latency profiling, and microservice decoupling.</p>
+            <div class="pt-2 flex items-center justify-between text-xs font-mono">
+              <span class="text-stone-500">Audit / Sprint</span>
+              <span class="text-amber-400 font-semibold">Book Consultation ↗</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Color Palette Spec -->
+        <div class="p-6 bg-[#12110f] border-t border-[#2b2724] flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-stone-400">
+          <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-1.5">
+              <span class="w-3.5 h-3.5 rounded-full bg-[#0d0c0b] border border-stone-700"></span>
+              <span>#0d0c0b</span>
+            </div>
+            <div class="flex items-center space-x-1.5">
+              <span class="w-3.5 h-3.5 rounded-full bg-[#161412] border border-stone-700"></span>
+              <span>#161412</span>
+            </div>
+            <div class="flex items-center space-x-1.5">
+              <span class="w-3.5 h-3.5 rounded-full bg-[#f59e0b]"></span>
+              <span class="text-amber-400 font-bold">#f59e0b</span>
+            </div>
+          </div>
+          <span class="text-stone-500">Grid: Warm Ambient Grid</span>
+        </div>
+      </div>
+
+      <!-- ==============================================
+           THEME 4: Stark Monochrome
+           ============================================== -->
+      <div class="rounded-3xl border border-[#27272a] bg-[#09090b] overflow-hidden shadow-2xl flex flex-col justify-between">
+        <!-- Theme Header -->
+        <div class="p-6 sm:p-8 border-b border-[#27272a] bg-neutral-950/80 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-white/10 text-white border border-white/20 font-bold uppercase tracking-wider">
+                04 // Swiss &bull; Steel
+              </span>
+              <span class="text-xs text-neutral-400 font-mono">Pure High Contrast</span>
+            </div>
+            <h3 class="text-2xl font-extrabold text-white mt-1">Stark Monochrome</h3>
+            <p class="text-xs text-neutral-400 mt-0.5">High-contrast matte zinc, pure white typography, zero neon distraction.</p>
+          </div>
+
+          <button onclick="activateAndGo('mono')" class="inline-flex items-center space-x-1.5 text-xs font-bold text-black bg-white hover:bg-neutral-200 px-4 py-2.5 rounded-xl transition shadow-lg">
+            <span>Set as Default &amp; View Site →</span>
+          </button>
+        </div>
+
+        <!-- Live Visual Sample Mockup -->
+        <div class="p-6 sm:p-8 space-y-6 bg-[#09090b] relative">
+          <!-- Mockup Hero -->
+          <div class="space-y-3">
+            <span class="text-[11px] font-mono uppercase tracking-widest text-neutral-400 font-bold">
+              00 // Strategic Technical Leadership
+            </span>
+            <h4 class="text-2xl font-extrabold text-white leading-tight">
+              Empowering Engineering <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-300 to-neutral-500">Excellence</span>.
+            </h4>
+            <p class="text-xs text-neutral-300 leading-relaxed max-w-lg">
+              Partnering with engineering executives to architect scalable distributed systems and build high-performance technical organizations.
+            </p>
+          </div>
+
+          <!-- Mockup Badges -->
+          <div class="flex flex-wrap gap-2 text-[11px] font-mono">
+            <span class="px-2.5 py-1 rounded-md bg-[#121214] border border-[#27272a] text-neutral-300">
+              <span class="text-white font-bold">15+</span> Yrs Architecture
+            </span>
+            <span class="px-2.5 py-1 rounded-md bg-[#121214] border border-[#27272a] text-neutral-300">
+              <span class="text-neutral-400 font-bold">Ex-</span> Google • Meta • Pantheon
+            </span>
+            <span class="px-2.5 py-1 rounded-md bg-[#121214] border border-[#27272a] text-neutral-300">
+              🎓 Georgia Tech
+            </span>
+          </div>
+
+          <!-- Mockup Component Card -->
+          <div class="rounded-2xl p-5 bg-[#121214] border border-[#27272a] space-y-3 shadow-lg">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 text-white border border-white/20 font-bold">
+                01 // Architecture
+              </span>
+              <span class="text-[11px] font-mono text-neutral-500">Practice Area</span>
+            </div>
+            <h5 class="text-base font-bold text-white">Distributed Systems &amp; Cloud Modernization</h5>
+            <p class="text-xs text-neutral-400">High-concurrency infrastructure, latency profiling, and microservice decoupling.</p>
+            <div class="pt-2 flex items-center justify-between text-xs font-mono">
+              <span class="text-neutral-500">Audit / Sprint</span>
+              <span class="text-white font-semibold">Book Consultation ↗</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Color Palette Spec -->
+        <div class="p-6 bg-neutral-950 border-t border-[#27272a] flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-neutral-400">
+          <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-1.5">
+              <span class="w-3.5 h-3.5 rounded-full bg-[#09090b] border border-neutral-700"></span>
+              <span>#09090b</span>
+            </div>
+            <div class="flex items-center space-x-1.5">
+              <span class="w-3.5 h-3.5 rounded-full bg-[#121214] border border-neutral-700"></span>
+              <span>#121214</span>
+            </div>
+            <div class="flex items-center space-x-1.5">
+              <span class="w-3.5 h-3.5 rounded-full bg-[#ffffff]"></span>
+              <span class="text-white font-bold">#ffffff</span>
+            </div>
+          </div>
+          <span class="text-neutral-500">Grid: Fine Zinc Matrix</span>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+    function activateAndGo(theme) {
+      try {
+        localStorage.setItem('nanok_theme', theme);
+      } catch (e) {}
+      window.location.href = './';
+    }
+  </script>
+</body>
+</html>
