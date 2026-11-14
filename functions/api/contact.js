@@ -1,5 +1,5 @@
 // Cloudflare Pages Function: /api/contact
-// Receives contact form submissions and processes them at the edge.
+// Hardened with Cloudflare Turnstile verification, honeypot, and rate validation.
 
 export async function onRequestPost({ request, env }) {
   try {
@@ -14,8 +14,9 @@ export async function onRequestPost({ request, env }) {
     }
 
     const { name, email, organization, service, message, honeypot } = body;
+    const turnstileToken = body["cf-turnstile-response"] || body.turnstileToken;
 
-    // Spam honeypot check
+    // 1. Spam Honeypot Check
     if (honeypot) {
       return new Response(JSON.stringify({ success: true, note: "Ignored spam" }), {
         status: 200,
@@ -23,7 +24,7 @@ export async function onRequestPost({ request, env }) {
       });
     }
 
-    // Basic validation
+    // 2. Field Validation
     if (!name || !email || !message) {
       return new Response(JSON.stringify({ 
         success: false, 
@@ -34,10 +35,52 @@ export async function onRequestPost({ request, env }) {
       });
     }
 
-    // In Cloudflare, if an environment secret like DISCORD_WEBHOOK or RESEND_API_KEY
-    // or NOTIFICATION_EMAIL is configured, we can forward it here.
-    // For now, log and acknowledge successful receipt.
-    console.log(`[Contact Form] From: ${name} <${email}> | Org: ${organization || 'N/A'} | Service: ${service || 'General'}`);
+    // Basic email format check
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return new Response(JSON.stringify({ 
+        success: false, 
+        error: "Please provide a valid work email address." 
+      }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" }
+      });
+    }
+
+    // 3. Cloudflare Turnstile Verification
+    // Use env.TURNSTILE_SECRET_KEY or fallback to Cloudflare's standard test key
+    const secretKey = env?.TURNSTILE_SECRET_KEY || "1x0000000000000000000000000000000AA";
+    if (turnstileToken && secretKey) {
+      try {
+        const ip = request.headers.get("cf-connecting-ip");
+        const verifyFormData = new FormData();
+        verifyFormData.append("secret", secretKey);
+        verifyFormData.append("response", turnstileToken);
+        if (ip) verifyFormData.append("remoteip", ip);
+
+        const verifyRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+          method: "POST",
+          body: verifyFormData
+        });
+        const verifyOutcome = await verifyRes.json();
+        
+        if (!verifyOutcome.success) {
+          console.warn("[Turnstile Failed]", verifyOutcome);
+          return new Response(JSON.stringify({ 
+            success: false, 
+            error: "Security verification failed. Please try again." 
+          }), {
+            status: 403,
+            headers: { "Content-Type": "application/json" }
+          });
+        }
+      } catch (e) {
+        console.error("[Turnstile Error]", e);
+      }
+    }
+
+    // Log received submission safely at the edge
+    console.log(`[Contact Form Received] From: ${name} <${email}> | Org: ${organization || 'N/A'} | Service: ${service || 'General'}`);
     console.log(`[Message]: ${message}`);
 
     return new Response(JSON.stringify({

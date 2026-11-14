@@ -1,31 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth" data-theme="emerald">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nanok Consulting — Empowering Engineering Excellence</title>
-  <meta name="description" content="Strategic engineering leadership, scalable distributed systems architecture, and technical mentoring by Erik Webb. Fractional CTO and advisory for high-growth tech organizations.">
-  <meta name="theme-color" content="#0a0a0a">
+  <title>Nanok Consulting — Systems Architecture &amp; Engineering Mentorship</title>
+  <meta name="description" content="Distributed systems architecture, principal engineering guidance, and engineering management mentorship by Erik Webb. Hands-on technical leadership and sensible AI adoption across the SDLC.">
+  <meta name="theme-color" content="#ffffff">
   <link rel="canonical" href="https://nanok.consulting/">
 
   <!-- Open Graph / Social Previews -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nanok.consulting/">
-  <meta property="og:title" content="Nanok Consulting — Empowering Engineering Excellence">
-  <meta property="og:description" content="Strategic engineering leadership, scalable distributed systems architecture, and technical mentoring by Erik Webb.">
+  <meta property="og:title" content="Nanok Consulting — Systems Architecture &amp; Engineering Mentorship">
+  <meta property="og:description" content="Distributed systems architecture, principal engineering guidance, and engineering management mentorship by Erik Webb.">
   <meta property="og:image" content="https://nanok.consulting/assets/images/hero.webp">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Nanok Consulting — Empowering Engineering Excellence">
-  <meta name="twitter:description" content="Strategic engineering leadership, scalable distributed systems architecture, and technical mentoring by Erik Webb.">
+  <meta name="twitter:title" content="Nanok Consulting — Systems Architecture &amp; Engineering Mentorship">
+  <meta name="twitter:description" content="Distributed systems architecture, principal engineering guidance, and engineering management mentorship by Erik Webb.">
   <meta name="twitter:image" content="https://nanok.consulting/assets/images/hero.webp">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/images/favicon.png">
 
-  <!-- Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <!-- Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -34,7 +34,7 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
             mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
           }
         }
@@ -42,793 +42,427 @@
     }
   </script>
 
-  <!-- Dynamic Theme Variables -->
+  <!-- Cloudflare Turnstile Anti-Bot Security -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
   <style>
-    /* Theme 1: Emerald (Obsidian Terminal - Default) */
-    :root, [data-theme="emerald"] {
-      --bg-body: #050505;
-      --bg-header: rgba(5, 5, 5, 0.88);
-      --bg-card: rgba(13, 13, 13, 0.85);
-      --bg-card-hover: rgba(20, 20, 20, 0.95);
-      --border-subtle: #222222;
-      --border-hover: rgba(16, 185, 129, 0.45);
-      --accent: #10b981;
-      --accent-glow: rgba(16, 185, 129, 0.15);
-      --accent-hover: #34d399;
-      --accent-text: #050505;
-      --badge-bg: rgba(16, 185, 129, 0.1);
-      --badge-border: rgba(16, 185, 129, 0.25);
-      --badge-text: #34d399;
-      --dot-color: rgba(255, 255, 255, 0.07);
-      --gradient-text: linear-gradient(135deg, #10b981 0%, #2dd4bf 50%, #38bdf8 100%);
-    }
-
-    /* Theme 2: Indigo (Titanium Slate / Linear Vibe) */
-    [data-theme="indigo"] {
-      --bg-body: #080a11;
-      --bg-header: rgba(8, 10, 17, 0.88);
-      --bg-card: rgba(15, 19, 30, 0.85);
-      --bg-card-hover: rgba(22, 28, 44, 0.95);
-      --border-subtle: #1e2538;
-      --border-hover: rgba(99, 102, 241, 0.5);
-      --accent: #6366f1;
-      --accent-glow: rgba(99, 102, 241, 0.2);
-      --accent-hover: #818cf8;
-      --accent-text: #ffffff;
-      --badge-bg: rgba(99, 102, 241, 0.12);
-      --badge-border: rgba(99, 102, 241, 0.3);
-      --badge-text: #a5b4fc;
-      --dot-color: rgba(99, 102, 241, 0.12);
-      --gradient-text: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #38bdf8 100%);
-    }
-
-    /* Theme 3: Amber (Nordic Architectural / Warm Charcoal) */
-    [data-theme="amber"] {
-      --bg-body: #0d0c0b;
-      --bg-header: rgba(13, 12, 11, 0.88);
-      --bg-card: rgba(22, 20, 18, 0.85);
-      --bg-card-hover: rgba(30, 27, 24, 0.95);
-      --border-subtle: #2b2724;
-      --border-hover: rgba(245, 158, 11, 0.45);
-      --accent: #f59e0b;
-      --accent-glow: rgba(245, 158, 11, 0.18);
-      --accent-hover: #fbbf24;
-      --accent-text: #0d0c0b;
-      --badge-bg: rgba(245, 158, 11, 0.1);
-      --badge-border: rgba(245, 158, 11, 0.25);
-      --badge-text: #fbbf24;
-      --dot-color: rgba(245, 158, 11, 0.08);
-      --gradient-text: linear-gradient(135deg, #fbbf24 0%, #f97316 50%, #f43f5e 100%);
-    }
-
-    /* Theme 4: Monochrome (Minimalist Slate & Steel) */
-    [data-theme="mono"] {
-      --bg-body: #09090b;
-      --bg-header: rgba(9, 9, 11, 0.9);
-      --bg-card: rgba(18, 18, 20, 0.85);
-      --bg-card-hover: rgba(28, 28, 32, 0.95);
-      --border-subtle: #27272a;
-      --border-hover: rgba(255, 255, 255, 0.4);
-      --accent: #f4f4f5;
-      --accent-glow: rgba(255, 255, 255, 0.15);
-      --accent-hover: #ffffff;
-      --accent-text: #09090b;
-      --badge-bg: rgba(255, 255, 255, 0.08);
-      --badge-border: rgba(255, 255, 255, 0.2);
-      --badge-text: #e4e4e7;
-      --dot-color: rgba(255, 255, 255, 0.06);
-      --gradient-text: linear-gradient(135deg, #ffffff 0%, #d4d4d8 60%, #a1a1aa 100%);
-    }
-
     body {
-      background-color: var(--bg-body);
-      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-      transition: background-color 0.25s ease, color 0.25s ease;
+      background-color: #fbfbfb;
+      color: #141414;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
     .font-mono {
       font-family: 'JetBrains Mono', ui-monospace, monospace;
     }
-    .dot-grid {
-      background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+    .subtle-grid {
+      background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
       background-size: 24px 24px;
     }
-    .theme-card {
-      background-color: var(--bg-card);
-      border-color: var(--border-subtle);
+    .swiss-border {
+      border-color: #e5e5e5;
     }
-    .theme-card:hover {
-      background-color: var(--bg-card-hover);
-      border-color: var(--border-hover);
+    .swiss-card {
+      background-color: #ffffff;
+      border: 1px solid #e7e7e7;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .theme-badge {
-      background-color: var(--badge-bg);
-      border-color: var(--badge-border);
-      color: var(--badge-text);
-    }
-    .theme-accent-btn {
-      background-color: var(--accent);
-      color: var(--accent-text);
-    }
-    .theme-accent-btn:hover {
-      background-color: var(--accent-hover);
-    }
-    .theme-gradient-text {
-      background-image: var(--gradient-text);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .theme-accent-color {
-      color: var(--accent);
-    }
-    .theme-border {
-      border-color: var(--border-subtle);
+    .swiss-card:hover {
+      border-color: #171717;
+      box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.08);
+      transform: translateY(-1px);
     }
   </style>
 </head>
-<body class="text-neutral-100 min-h-screen flex flex-col selection:bg-emerald-400 selection:text-black antialiased relative">
+<body class="min-h-screen selection:bg-neutral-900 selection:text-white antialiased relative">
+  <!-- Subtle Dot Grid Background -->
+  <div class="fixed inset-0 subtle-grid pointer-events-none z-0"></div>
 
-  <!-- Subtle Dot Grid Background Layer -->
-  <div class="fixed inset-0 dot-grid pointer-events-none z-0"></div>
-
-  <!-- Sticky Header Navigation -->
-  <header class="border-b theme-border sticky top-0 z-40 relative backdrop-blur-md" style="background-color: var(--bg-header);">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+  <!-- Header Navigation -->
+  <header class="border-b swiss-border bg-white/90 sticky top-0 z-40 backdrop-blur-md">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
       
       <!-- Brand -->
       <a href="./" class="flex items-center space-x-3 group">
-        <div class="w-9 h-9 rounded-xl theme-card border flex items-center justify-center p-1.5 transition shadow-sm">
-          <img src="assets/images/favicon.png" alt="Nanok Consulting Icon" class="w-full h-full object-contain" width="36" height="36">
+        <div class="w-8 h-8 rounded-lg bg-neutral-900 flex items-center justify-center p-1.5 shadow-sm group-hover:bg-black transition">
+          <img src="assets/images/favicon.png" alt="Nanok Consulting Icon" class="w-full h-full object-contain invert" width="32" height="32">
         </div>
         <div class="leading-tight">
-          <span class="text-base font-extrabold text-white tracking-tight group-hover:theme-accent-color transition">Nanok</span>
+          <span class="text-base font-extrabold text-neutral-900 tracking-tight">Nanok</span>
           <span class="text-xs text-neutral-500 font-mono block -mt-0.5">Consulting</span>
         </div>
       </a>
 
-      <!-- Desktop Nav Links -->
-      <nav class="hidden md:flex items-center space-x-6 text-xs font-mono font-medium text-neutral-400">
-        <a href="#services" class="hover:text-white transition">01 // Services</a>
-        <a href="#about" class="hover:text-white transition">02 // About</a>
-        <a href="#engagement" class="hover:text-white transition">03 // Engagement</a>
-        <a href="#contact" class="hover:text-white transition">04 // Contact</a>
+      <!-- Nav Links -->
+      <nav class="hidden md:flex items-center space-x-7 text-xs font-mono font-medium text-neutral-600">
+        <a href="#services" class="hover:text-black transition">01 // Capabilities</a>
+        <a href="#about" class="hover:text-black transition">02 // The Principal</a>
+        <a href="#engagement" class="hover:text-black transition">03 // Engagement</a>
+        <a href="#contact" class="hover:text-black transition">04 // Contact</a>
       </nav>
 
-      <!-- Right Controls: Theme Switcher & Actions -->
-      <div class="flex items-center space-x-2 sm:space-x-3">
-        
-        <!-- Live Theme Switcher Pill -->
-        <div class="flex items-center space-x-1 p-1 rounded-xl theme-card border text-[11px] font-mono shadow-sm">
-          <button type="button" onclick="setTheme('emerald')" data-theme-btn="emerald" title="Obsidian Emerald Theme" class="px-2 py-1 rounded-lg transition font-semibold text-neutral-400 hover:text-white">
-            Emerald
-          </button>
-          <button type="button" onclick="setTheme('indigo')" data-theme-btn="indigo" title="Titanium Indigo Theme" class="px-2 py-1 rounded-lg transition font-semibold text-neutral-400 hover:text-white">
-            Indigo
-          </button>
-          <button type="button" onclick="setTheme('amber')" data-theme-btn="amber" title="Nordic Amber Theme" class="px-2 py-1 rounded-lg transition font-semibold text-neutral-400 hover:text-white">
-            Amber
-          </button>
-          <button type="button" onclick="setTheme('mono')" data-theme-btn="mono" title="Minimalist Mono Theme" class="px-2 py-1 rounded-lg transition font-semibold text-neutral-400 hover:text-white hidden sm:inline-block">
-            Mono
-          </button>
-        </div>
-
-        <!-- Book Call CTA -->
-        <a href="https://app.reclaim.ai/m/erikwebb/flexible-quick-meeting" target="_blank" rel="noopener noreferrer" class="theme-accent-btn inline-flex items-center space-x-1.5 text-xs font-bold px-3.5 py-2 rounded-xl transition shadow-sm">
-          <span>Book Call</span>
-          <svg aria-hidden="true" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+      <!-- Quick Action CTA -->
+      <div class="flex items-center space-x-3">
+        <a href="https://www.linkedin.com/in/erikwebb" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" class="hidden sm:inline-flex items-center space-x-1.5 text-xs font-mono text-neutral-600 hover:text-black bg-neutral-100 hover:bg-neutral-200 border swiss-border px-3 py-1.5 rounded-lg transition">
+          <svg aria-hidden="true" class="w-3.5 h-3.5 fill-[#0A66C2]" viewBox="0 0 24 24">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
           </svg>
+          <span>LinkedIn</span>
         </a>
 
+        <a href="https://app.reclaim.ai/m/erikwebb/flexible-quick-meeting" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1.5 text-xs font-bold text-white bg-neutral-900 hover:bg-black px-4 py-2 rounded-lg transition shadow-sm">
+          <span>Book Call</span>
+          <span aria-hidden="true">↗</span>
+        </a>
       </div>
 
     </div>
   </header>
 
   <!-- Main Content -->
-  <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-16 sm:space-y-24 relative z-10">
+  <main class="max-w-5xl mx-auto px-6 py-16 sm:py-20 space-y-20 relative z-10">
 
     <!-- Hero Section -->
-    <section class="space-y-8 sm:space-y-10">
+    <section class="space-y-7">
       
-      <!-- Status Badge -->
-      <div class="inline-flex items-center space-x-2 text-xs font-mono px-3 py-1.5 rounded-full theme-card border text-neutral-300 shadow-sm">
-        <span class="w-2 h-2 rounded-full theme-accent-btn animate-pulse"></span>
-        <span class="text-neutral-400">Advisory:</span>
-        <span class="theme-accent-color font-semibold">Accepting Select Fractional &amp; Architectural Engagements</span>
+      <!-- Eyebrow Badge -->
+      <div class="inline-flex items-center space-x-2 text-xs font-mono px-3 py-1 rounded bg-neutral-100 border border-neutral-200 text-neutral-700">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span class="text-neutral-500">Available:</span>
+        <span class="font-semibold text-neutral-900">Architecture, Principal Advisory &amp; EM Mentorship</span>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-        
-        <!-- Left: Hero Copy -->
-        <div class="lg:col-span-8 space-y-6">
-          <div class="space-y-3">
-            <span class="text-xs font-mono uppercase tracking-widest theme-accent-color font-bold">
-              00 // Strategic Technical Leadership
-            </span>
-            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1]">
-              Empowering Engineering <span class="theme-gradient-text">Excellence</span>.
-            </h1>
-          </div>
+      <!-- Main Headline -->
+      <h1 class="text-4xl sm:text-6xl font-extrabold text-neutral-900 tracking-tight leading-[1.08] max-w-4xl">
+        Architectural Rigor &amp; Engineering Mentorship.
+      </h1>
 
-          <p class="text-neutral-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-            At Nanok Consulting, I partner with engineering leaders and executive teams to build resilient distributed systems, scale technical organizations, and mentor high-impact engineering leaders.
-          </p>
+      <!-- Sub-headline (Refocused on Architect / Principal / EM Mentor + SDLC AI) -->
+      <p class="text-neutral-600 text-lg sm:text-xl font-normal leading-relaxed max-w-3xl">
+        At Nanok Consulting, I work alongside engineering teams and leaders as a <strong class="text-neutral-900 font-semibold">systems architect, principal engineer, and EM mentor</strong>—solving critical scaling bottlenecks, leveling up technical craft, and implementing <strong class="text-neutral-900 font-semibold">sensible, high-leverage AI practices across the SDLC</strong>.
+      </p>
 
-          <!-- Highlights Pills -->
-          <div class="flex flex-wrap items-center gap-2 pt-2">
-            <span class="inline-flex items-center space-x-1.5 text-xs font-mono px-3 py-1.5 rounded-lg theme-card border text-neutral-300">
-              <span class="theme-accent-color font-bold">15+</span>
-              <span>Years Experience</span>
-            </span>
-            <span class="inline-flex items-center space-x-1.5 text-xs font-mono px-3 py-1.5 rounded-lg theme-card border text-neutral-300">
-              <span class="text-sky-400 font-bold">Ex-</span>
-              <span>Google • Meta • Pantheon</span>
-            </span>
-            <span class="inline-flex items-center space-x-1.5 text-xs font-mono px-3 py-1.5 rounded-lg theme-card border text-neutral-300">
-              <span class="text-amber-400">🎓</span>
-              <span>Georgia Tech Alum</span>
-            </span>
-            <span class="inline-flex items-center space-x-1.5 text-xs font-mono px-3 py-1.5 rounded-lg theme-card border text-neutral-300">
-              <span class="text-rose-400">📍</span>
-              <span>Richmond, VA</span>
-            </span>
-          </div>
+      <!-- Proof Points / Credentials -->
+      <div class="flex flex-wrap items-center gap-2 pt-2 text-xs font-mono">
+        <span class="px-3 py-1.5 rounded bg-white border swiss-border text-neutral-800 shadow-sm">
+          <strong class="text-neutral-900">15+</strong> Years Distributed Systems
+        </span>
+        <span class="px-3 py-1.5 rounded bg-white border swiss-border text-neutral-800 shadow-sm">
+          Ex- Google • Meta • Pantheon
+        </span>
+        <span class="px-3 py-1.5 rounded bg-white border swiss-border text-neutral-800 shadow-sm">
+          🎓 Georgia Tech Alum
+        </span>
+        <span class="px-3 py-1.5 rounded bg-white border swiss-border text-neutral-800 shadow-sm">
+          📍 Richmond, VA
+        </span>
+      </div>
 
-          <!-- Hero Action Buttons -->
-          <div class="flex flex-wrap items-center gap-3 pt-2">
-            <a href="https://app.reclaim.ai/m/erikwebb/flexible-quick-meeting" target="_blank" rel="noopener noreferrer" class="theme-accent-btn inline-flex items-center space-x-2 text-xs sm:text-sm font-bold px-5 py-3 rounded-xl transition shadow-lg">
-              <span>Schedule Intro Call</span>
-              <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </a>
-
-            <a href="#contact" class="inline-flex items-center space-x-2 text-xs sm:text-sm font-semibold text-neutral-300 hover:text-white theme-card border px-5 py-3 rounded-xl transition">
-              <span>Send Message</span>
-              <svg aria-hidden="true" class="w-4 h-4 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </a>
-
-            <a href="https://www.linkedin.com/in/erikwebb" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 text-xs sm:text-sm font-semibold text-neutral-400 hover:text-white px-4 py-3 rounded-xl hover:bg-neutral-900/40 transition">
-              <span>LinkedIn Profile ↗</span>
-            </a>
-          </div>
-
-        </div>
-
-        <!-- Right: Profile Card -->
-        <div class="lg:col-span-4">
-          <div class="theme-card border rounded-2xl p-6 shadow-2xl relative overflow-hidden group transition">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="relative w-16 h-16 rounded-2xl overflow-hidden border-2 theme-border bg-neutral-900 shrink-0">
-                <img src="assets/images/hero.webp" alt="Erik Webb" class="w-full h-full object-cover" width="64" height="64" loading="eager">
-                <div class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full theme-accent-btn border-2 border-black" title="Active"></div>
-              </div>
-              <div>
-                <h3 class="text-base font-bold text-white">Erik Webb</h3>
-                <p class="text-xs theme-accent-color font-mono">Principal Consultant</p>
-                <p class="text-xs text-neutral-500 font-mono mt-0.5">Nanok Consulting LLC</p>
-              </div>
-            </div>
-
-            <p class="text-xs text-neutral-300 leading-relaxed border-t theme-border pt-3">
-              Former engineering executive and distributed systems architect scaling teams from early-stage to IPO platforms.
-            </p>
-
-            <div class="mt-4 pt-3 border-t theme-border flex items-center justify-between text-[11px] font-mono text-neutral-400">
-              <span>Direct Inquiries:</span>
-              <a href="#contact" class="theme-accent-color hover:underline">Use Web Form ↓</a>
-            </div>
-          </div>
-        </div>
-
+      <!-- Hero Actions -->
+      <div class="pt-4 flex flex-wrap items-center gap-3 text-xs">
+        <a href="https://app.reclaim.ai/m/erikwebb/flexible-quick-meeting" target="_blank" rel="noopener noreferrer" class="bg-neutral-900 hover:bg-black text-white font-semibold px-5 py-3 rounded-lg transition shadow-sm flex items-center space-x-2">
+          <span>Schedule 30-Min Consultation</span>
+          <span>↗</span>
+        </a>
+        <a href="#contact" class="bg-white border swiss-border hover:border-neutral-900 text-neutral-800 font-semibold px-5 py-3 rounded-lg transition flex items-center space-x-2 shadow-sm">
+          <span>Send Confidential Inquiry</span>
+          <span>↓</span>
+        </a>
+        <a href="https://www.linkedin.com/in/erikwebb" target="_blank" rel="noopener noreferrer" class="text-neutral-500 hover:text-black font-mono px-3 py-3 transition">
+          Full Resume on LinkedIn ↗
+        </a>
       </div>
 
     </section>
 
-    <!-- Services / Practice Areas Grid -->
-    <section id="services" class="space-y-8 scroll-mt-24 border-t theme-border pt-12">
-      
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b theme-border pb-6">
+    <!-- Capabilities / Practice Areas Grid -->
+    <section id="services" class="space-y-6 border-t swiss-border pt-14 scroll-mt-24">
+      <div class="flex items-end justify-between border-b swiss-border pb-4">
         <div>
-          <span class="text-xs font-mono uppercase tracking-widest theme-accent-color font-bold">
-            01 // Capabilities
-          </span>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mt-1">
-            Consulting Practice Areas
-          </h2>
-          <p class="text-neutral-400 text-xs sm:text-sm mt-1 max-w-xl">
-            Targeted technical leadership and architecture advisory tailored to your stage of growth.
-          </p>
+          <span class="text-xs font-mono text-neutral-500 uppercase tracking-widest block">01 // Capabilities</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mt-1">Consulting Disciplines</h2>
         </div>
-        <span class="text-xs font-mono text-neutral-500 theme-card px-3 py-1.5 rounded-lg border theme-border self-start sm:self-auto">
-          4 Practice Pillars
-        </span>
+        <span class="text-xs font-mono text-neutral-400">4 Core Practices</span>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        <!-- Pillar 1: Fractional CTO & Technical Leadership -->
-        <div class="theme-card border rounded-2xl p-6 sm:p-8 shadow-xl transition-all duration-200 group flex flex-col justify-between">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="text-[11px] font-mono px-2.5 py-1 rounded-md theme-badge border font-bold uppercase tracking-wider">
-                01 // Leadership
-              </span>
-              <span class="text-xs text-neutral-500 font-mono">Executive Guidance</span>
+        <!-- Pillar 1: Distributed Systems Architecture -->
+        <div class="swiss-card p-7 sm:p-8 rounded-2xl space-y-4 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between text-xs font-mono text-neutral-400">
+              <span class="px-2 py-0.5 rounded bg-neutral-100 text-neutral-700 font-semibold">01 // Architecture</span>
+              <span>Audit / Advisory</span>
             </div>
-
-            <div>
-              <h3 class="text-xl font-bold text-white group-hover:theme-accent-color transition">
-                Fractional CTO &amp; Technical Leadership
-              </h3>
-              <p class="text-neutral-300 text-xs sm:text-sm mt-2 leading-relaxed">
-                Strategic technical stewardship for startups and scaling companies navigating inflection points. Providing interim VP/CTO guidance, technical hiring strategy, board advisory, and executive roadmap clarity.
-              </p>
-            </div>
-
-            <div class="space-y-2 pt-2 text-xs text-neutral-400">
-              <div class="flex items-center space-x-2">
-                <span class="theme-accent-color font-mono font-bold">›</span>
-                <span>Interim VP of Engineering &amp; Fractional CTO leadership</span>
-              </div>
-              <div class="flex items-center space-x-2">
-                <span class="theme-accent-color font-mono font-bold">›</span>
-                <span>Engineering strategy &amp; technical roadmap synthesis</span>
-              </div>
-              <div class="flex items-center space-x-2">
-                <span class="theme-accent-color font-mono font-bold">›</span>
-                <span>Executive hiring, interview calibration &amp; team structure</span>
-              </div>
-            </div>
+            <h3 class="text-xl font-bold text-neutral-900">Distributed Systems Architecture</h3>
+            <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+              Transforming monolithic bottlenecks into scalable, low-latency, and cost-efficient cloud services across AWS, GCP, and Cloudflare. Designing for multi-region resilience, observability, and zero single points of failure.
+            </p>
           </div>
-
-          <div class="pt-6 mt-6 border-t theme-border flex items-center justify-between text-xs font-mono text-neutral-500">
-            <span>Engagement: Retainer / Monthly</span>
-            <a href="#contact" class="theme-accent-color font-semibold flex items-center space-x-1 hover:underline">
-              <span>Inquire ↗</span>
-            </a>
-          </div>
+          <ul class="text-xs font-mono text-neutral-500 space-y-1.5 pt-3 border-t swiss-border">
+            <li>• Microservices, event-driven pipelines &amp; data partitioning</li>
+            <li>• High-availability, multi-region DR &amp; latency profiling</li>
+            <li>• Technical debt triage &amp; modernization roadmaps</li>
+          </ul>
         </div>
 
-        <!-- Pillar 2: Distributed Systems & Cloud Architecture -->
-        <div class="theme-card border rounded-2xl p-6 sm:p-8 shadow-xl transition-all duration-200 group flex flex-col justify-between">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="text-[11px] font-mono px-2.5 py-1 rounded-md theme-badge border font-bold uppercase tracking-wider">
-                02 // Architecture
-              </span>
-              <span class="text-xs text-neutral-500 font-mono">Infrastructure</span>
+        <!-- Pillar 2: Principal / Staff+ Engineer Guidance -->
+        <div class="swiss-card p-7 sm:p-8 rounded-2xl space-y-4 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between text-xs font-mono text-neutral-400">
+              <span class="px-2 py-0.5 rounded bg-neutral-100 text-neutral-700 font-semibold">02 // Principal IC</span>
+              <span>Embedded Sprint</span>
             </div>
-
-            <div>
-              <h3 class="text-xl font-bold text-white group-hover:theme-accent-color transition">
-                Distributed Systems &amp; Cloud Modernization
-              </h3>
-              <p class="text-neutral-300 text-xs sm:text-sm mt-2 leading-relaxed">
-                Architecting high-concurrency, low-latency web platforms and resilient cloud infrastructure. Transforming monolithic bottlenecks into performant, observable, and cost-efficient distributed services.
-              </p>
-            </div>
-
-            <div class="space-y-2 pt-2 text-xs text-neutral-400">
-              <div class="flex items-center space-x-2">
-                <span class="theme-accent-color font-mono font-bold">›</span>
-                <span>Cloud architecture &amp; migration (AWS, GCP, Cloudflare)</span>
-              </div>
-              <div class="flex items-center space-x-2">
-                <span class="theme-accent-color font-mono font-bold">›</span>
-                <span>High-availability, failover &amp; site reliability engineering</span>
-              </div>
-              <div class="flex items-center space-x-2">
-                <span class="theme-accent-color font-mono font-bold">›</span>
-                <span>Performance profiling, latency reduction &amp; caching topologies</span>
-              </div>
-            </div>
+            <h3 class="text-xl font-bold text-neutral-900">Principal Engineer Guidance</h3>
+            <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+              High-leverage technical direction on mission-critical initiatives. Leading architecture RFC and design doc reviews, unblocking complex distributed systems challenges, and establishing engineering standards that raise the team's technical ceiling.
+            </p>
           </div>
-
-          <div class="pt-6 mt-6 border-t theme-border flex items-center justify-between text-xs font-mono text-neutral-500">
-            <span>Engagement: Audit / Sprint / Retainer</span>
-            <a href="#contact" class="theme-accent-color font-semibold flex items-center space-x-1 hover:underline">
-              <span>Inquire ↗</span>
-            </a>
-          </div>
+          <ul class="text-xs font-mono text-neutral-500 space-y-1.5 pt-3 border-t swiss-border">
+            <li>• Architecture RFC authoring &amp; design doc reviews</li>
+            <li>• Prototyping critical-path components &amp; proofs of concept</li>
+            <li>• Elevating code review hygiene, test automation &amp; rigor</li>
+          </ul>
         </div>
 
-        <!-- Pillar 3: Engineering Organization Development -->
-        <div class="theme-card border rounded-2xl p-6 sm:p-8 shadow-xl transition-all duration-200 group flex flex-col justify-between">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="text-[11px] font-mono px-2.5 py-1 rounded-md theme-badge border font-bold uppercase tracking-wider">
-                03 // Organization
-              </span>
-              <span class="text-xs text-neutral-500 font-mono">Operations</span>
+        <!-- Pillar 3: Engineering Manager Mentorship -->
+        <div class="swiss-card p-7 sm:p-8 rounded-2xl space-y-4 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between text-xs font-mono text-neutral-400">
+              <span class="px-2 py-0.5 rounded bg-neutral-100 text-neutral-700 font-semibold">03 // Mentorship</span>
+              <span>1-on-1 Coaching</span>
             </div>
-
-            <div>
-              <h3 class="text-xl font-bold text-white group-hover:theme-accent-color transition">
-                Engineering Organization Development
-              </h3>
-              <p class="text-neutral-300 text-xs sm:text-sm mt-2 leading-relaxed">
-                Building durable engineering teams by defining operating cadences, career progression frameworks, and execution cultures that maximize velocity while preventing burnout.
-              </p>
-            </div>
-
-            <div class="space-y-2 pt-2 text-xs text-neutral-400">
-              <div class="flex items-center space-x-2">
-                <span class="theme-accent-color font-mono font-bold">›</span>
-                <span>Engineering career ladders &amp; performance management</span>
-              </div>
-              <div class="flex items-center space-x-2">
-                <span class="theme-accent-color font-mono font-bold">›</span>
-                <span>CI/CD pipelines, testing automation &amp; release engineering</span>
-              </div>
-              <div class="flex items-center space-x-2">
-                <span class="theme-accent-color font-mono font-bold">›</span>
-                <span>Culture of ownership, blameless post-mortems &amp; rigor</span>
-              </div>
-            </div>
+            <h3 class="text-xl font-bold text-neutral-900">Engineering Manager Mentorship</h3>
+            <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+              Practical, 1-on-1 mentorship for new and growing Engineering Managers. Translating technical expertise into people leadership, navigating 1-on-1s, performance calibration, sprint delivery cadence, and building high-trust, high-output engineering cultures.
+            </p>
           </div>
-
-          <div class="pt-6 mt-6 border-t theme-border flex items-center justify-between text-xs font-mono text-neutral-500">
-            <span>Engagement: Sprint / Advisory</span>
-            <a href="#contact" class="theme-accent-color font-semibold flex items-center space-x-1 hover:underline">
-              <span>Inquire ↗</span>
-            </a>
-          </div>
+          <ul class="text-xs font-mono text-neutral-500 space-y-1.5 pt-3 border-t swiss-border">
+            <li>• Transitioning smoothly from senior IC to high-impact EM</li>
+            <li>• 1-on-1 frameworks, performance management &amp; delegation</li>
+            <li>• Engineering velocity, sprint hygiene &amp; team topologies</li>
+          </ul>
         </div>
 
-        <!-- Pillar 4: Technical Leadership Mentoring -->
-        <div class="theme-card border rounded-2xl p-6 sm:p-8 shadow-xl transition-all duration-200 group flex flex-col justify-between">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="text-[11px] font-mono px-2.5 py-1 rounded-md theme-badge border font-bold uppercase tracking-wider">
-                04 // Mentoring
-              </span>
-              <span class="text-xs text-neutral-500 font-mono">1-on-1 Coaching</span>
+        <!-- Pillar 4: Sensible AI & Modern SDLC Velocity -->
+        <div class="swiss-card p-7 sm:p-8 rounded-2xl space-y-4 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between text-xs font-mono text-neutral-400">
+              <span class="px-2 py-0.5 rounded bg-neutral-100 text-neutral-700 font-semibold">04 // AI in SDLC</span>
+              <span>Pragmatic Tooling</span>
             </div>
-
-            <div>
-              <h3 class="text-xl font-bold text-white group-hover:theme-accent-color transition">
-                Technical Leadership Coaching
-              </h3>
-              <p class="text-neutral-300 text-xs sm:text-sm mt-2 leading-relaxed">
-                Dedicated coaching for new and experienced engineering managers, directors, and staff-level architects. Helping technical leaders translate engineering decisions into commercial outcomes.
-              </p>
-            </div>
-
-            <div class="space-y-2 pt-2 text-xs text-neutral-400">
-              <div class="flex items-center space-x-2">
-                <span class="theme-accent-color font-mono font-bold">›</span>
-                <span>1-on-1 coaching for Directors, EMs, and Staff+ engineers</span>
-              </div>
-              <div class="flex items-center space-x-2">
-                <span class="theme-accent-color font-mono font-bold">›</span>
-                <span>Strategic communication with founders, CEOs, and boards</span>
-              </div>
-              <div class="flex items-center space-x-2">
-                <span class="theme-accent-color font-mono font-bold">›</span>
-                <span>Navigating organizational politics, reorgs &amp; team scaling</span>
-              </div>
-            </div>
+            <h3 class="text-xl font-bold text-neutral-900">Sensible AI &amp; Modern SDLC Velocity</h3>
+            <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+              Integrating pragmatic, high-leverage AI workflows across the software development lifecycle without accumulating technical debt. Establishing verification gates, code ownership, and automated review standards.
+            </p>
           </div>
-
-          <div class="pt-6 mt-6 border-t theme-border flex items-center justify-between text-xs font-mono text-neutral-500">
-            <span>Engagement: Bi-Weekly / Monthly Coaching</span>
-            <a href="#contact" class="theme-accent-color font-semibold flex items-center space-x-1 hover:underline">
-              <span>Inquire ↗</span>
-            </a>
-          </div>
+          <ul class="text-xs font-mono text-neutral-500 space-y-1.5 pt-3 border-t swiss-border">
+            <li>• High-leverage AI integration for testing &amp; scaffolding</li>
+            <li>• Architectural guardrails &amp; code ownership hygiene</li>
+            <li>• CI/CD pipeline automation &amp; cycle-time benchmarking</li>
+          </ul>
         </div>
 
       </div>
-
     </section>
 
-    <!-- About / Founder Section -->
-    <section id="about" class="space-y-8 scroll-mt-24 border-t theme-border pt-12">
-      
-      <div class="border-b theme-border pb-6">
-        <span class="text-xs font-mono uppercase tracking-widest theme-accent-color font-bold">
-          02 // Founder Spotlight
-        </span>
-        <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mt-1">
-          About Erik Webb
-        </h2>
-      </div>
+    <!-- Principal Profile Section -->
+    <section id="about" class="border-t swiss-border pt-14 space-y-6 scroll-mt-24">
+      <span class="text-xs font-mono text-neutral-500 uppercase tracking-widest block">02 // The Principal</span>
 
-      <div class="theme-card border rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div class="swiss-card p-8 sm:p-10 rounded-2xl space-y-6">
+        <div class="grid grid-cols-1 sm:grid-cols-12 gap-8 items-start">
           
-          <div class="lg:col-span-4 space-y-4">
-            <div class="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden border-2 theme-border bg-neutral-900 shadow-xl">
-              <img src="assets/images/hero.webp" alt="Erik Webb headshot" class="w-full h-full object-cover" width="160" height="160">
+          <!-- Headshot & Tag -->
+          <div class="sm:col-span-4 space-y-3">
+            <div class="w-32 h-32 rounded-xl overflow-hidden border swiss-border bg-neutral-100 shadow-sm">
+              <img src="assets/images/hero.webp" alt="Erik Webb headshot" class="w-full h-full object-cover" width="128" height="128">
             </div>
-
-            <div class="space-y-1">
-              <h3 class="text-xl font-extrabold text-white">Erik Webb</h3>
-              <p class="text-xs font-mono theme-accent-color">Software Architect &amp; Fractional VP</p>
-              <p class="text-xs font-mono text-neutral-500">Richmond, Virginia</p>
-            </div>
-
-            <!-- Credentials -->
-            <div class="pt-2 flex flex-col space-y-2 text-xs text-neutral-400 font-mono">
-              <div class="flex items-center space-x-2">
-                <span class="text-amber-400">🎓</span>
-                <span>Georgia Institute of Technology</span>
-              </div>
-              <div class="flex items-center space-x-2">
-                <span class="text-sky-400">💼</span>
-                <span>Ex-Google, Meta, Pantheon</span>
-              </div>
-              <div class="flex items-center space-x-2">
-                <span class="theme-accent-color">⚡</span>
-                <span>Personal site: <a href="https://erikwebb.net" target="_blank" rel="noopener noreferrer" class="text-neutral-300 hover:text-white underline">erikwebb.net ↗</a></span>
-              </div>
+            <div>
+              <h3 class="text-xl font-bold text-neutral-900">Erik Webb</h3>
+              <p class="text-xs font-mono text-neutral-600">Systems Architect &amp; Engineering Mentor</p>
+              <p class="text-xs font-mono text-neutral-400">Richmond, VA &bull; Georgia Tech</p>
             </div>
           </div>
 
-          <div class="lg:col-span-8 space-y-4 text-neutral-300 text-sm sm:text-base leading-relaxed">
+          <!-- Bio -->
+          <div class="sm:col-span-8 space-y-4 text-neutral-600 text-xs sm:text-sm leading-relaxed">
             <p>
-              I am an engineering leader and distributed systems architect with over 15 years of experience building, scaling, and advising high-performance engineering organizations. My career spans early-stage hypergrowth environments to global platforms at technology leaders including Google, Meta, and Pantheon.
+              I am a distributed systems architect, principal engineer, and engineering mentor with over 15 years of experience building, scaling, and advising high-performance engineering teams at industry leaders including Google, Meta, and Pantheon.
             </p>
             <p>
-              I specialize in helping founders, CTOs, and technical executives tackle critical architectural bottlenecks, modernise legacy infrastructure, and establish engineering cultures where teams execute with high autonomy, rigor, and pride in craft.
+              Rather than abstract executive overhead, I focus on working directly alongside engineers and managers: diagnosing complex scaling bottlenecks, authoring architectural RFCs, mentoring newer EMs into confident leaders, and raising the engineering bar.
             </p>
             <p>
-              Whether your team needs hands-on architectural review, interim executive leadership during a period of transition, or regular 1-on-1 mentorship for your technical managers, I adapt to your operational rhythm to deliver measurable impact.
+              I partner with engineering teams through embedded principal advisory retainers, targeted architectural audit sprints, and 1-on-1 EM coaching tracks.
             </p>
 
-            <div class="pt-4 flex flex-wrap items-center gap-3">
-              <a href="https://www.linkedin.com/in/erikwebb" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 text-xs font-semibold text-white theme-card border px-4 py-2.5 rounded-xl transition shadow-sm">
-                <svg aria-hidden="true" class="w-4 h-4 fill-[#0A66C2]" viewBox="0 0 24 24">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                </svg>
-                <span>Full Career History on LinkedIn ↗</span>
+            <div class="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono">
+              <a href="https://www.linkedin.com/in/erikwebb" target="_blank" rel="noopener noreferrer" class="text-neutral-900 font-bold hover:underline">
+                LinkedIn Profile ↗
               </a>
-
-              <a href="https://github.com/erikwebb" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 text-xs font-semibold text-neutral-300 hover:text-white theme-card border px-4 py-2.5 rounded-xl transition">
-                <span>GitHub Profile ↗</span>
+              <span class="text-neutral-300">•</span>
+              <a href="https://erikwebb.net" target="_blank" rel="noopener noreferrer" class="text-neutral-600 hover:text-black">
+                Personal Tools: erikwebb.net ↗
+              </a>
+              <span class="text-neutral-300">•</span>
+              <a href="https://github.com/erikwebb" target="_blank" rel="noopener noreferrer" class="text-neutral-600 hover:text-black">
+                GitHub ↗
               </a>
             </div>
           </div>
 
         </div>
       </div>
-
     </section>
 
     <!-- Engagement Models -->
-    <section id="engagement" class="space-y-8 scroll-mt-24 border-t theme-border pt-12">
-      
-      <div class="border-b theme-border pb-6">
-        <span class="text-xs font-mono uppercase tracking-widest theme-accent-color font-bold">
-          03 // How We Work Together
-        </span>
-        <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mt-1">
-          Flexible Engagement Models
-        </h2>
-        <p class="text-neutral-400 text-xs sm:text-sm mt-1 max-w-xl">
-          Structured to meet you where your engineering organization is today.
-        </p>
+    <section id="engagement" class="border-t swiss-border pt-14 space-y-6 scroll-mt-24">
+      <div class="border-b swiss-border pb-4">
+        <span class="text-xs font-mono text-neutral-500 uppercase tracking-widest block">03 // Engagements</span>
+        <h2 class="text-2xl font-bold text-neutral-900 tracking-tight mt-1">Engagement Structures</h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-        <!-- Model 1: Retainer / Fractional CTO -->
-        <div class="theme-card border rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition">
-          <div class="space-y-4">
-            <span class="text-[11px] font-mono px-2.5 py-1 rounded-md theme-badge border font-bold uppercase tracking-wider">
-              Ongoing Partnership
-            </span>
-            <h3 class="text-xl font-bold text-white">Fractional CTO &amp; Advisory</h3>
-            <p class="text-neutral-300 text-xs sm:text-sm leading-relaxed">
-              Dedicated weekly allocation providing strategic leadership, architectural review, leadership hiring support, and executive advisory.
-            </p>
-            <ul class="text-xs text-neutral-400 space-y-2 pt-2 border-t theme-border">
-              <li>• Embedded in executive &amp; technical syncs</li>
-              <li>• Direct access via Slack &amp; ad-hoc sessions</li>
-              <li>• Quarterly roadmap &amp; org architecture reviews</li>
-            </ul>
-          </div>
-          <div class="pt-6 mt-6 border-t theme-border">
-            <a href="#contact" class="text-xs font-mono theme-accent-color font-semibold flex items-center space-x-1 hover:underline">
-              <span>Inquire about Retainer ↗</span>
-            </a>
-          </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
+        
+        <div class="swiss-card p-6 rounded-xl space-y-3">
+          <span class="font-mono text-neutral-500 uppercase">Model 01</span>
+          <h4 class="text-base font-bold text-neutral-900">Embedded Principal Retainer</h4>
+          <p class="text-neutral-600 leading-relaxed">
+            Dedicated weekly allocation embedded with your technical leads and engineering teams—leading architecture reviews, unblocking critical path initiatives, and setting engineering standards.
+          </p>
         </div>
 
-        <!-- Model 2: Architecture Deep-Dive Sprint -->
-        <div class="theme-card border rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition">
-          <div class="space-y-4">
-            <span class="text-[11px] font-mono px-2.5 py-1 rounded-md theme-badge border font-bold uppercase tracking-wider">
-              Fixed-Scope Audit
-            </span>
-            <h3 class="text-xl font-bold text-white">System Architecture Audit</h3>
-            <p class="text-neutral-300 text-xs sm:text-sm leading-relaxed">
-              A 2–4 week intensive audit of your cloud infrastructure, bottlenecks, resilience risks, technical debt, and team operational velocity.
-            </p>
-            <ul class="text-xs text-neutral-400 space-y-2 pt-2 border-t theme-border">
-              <li>• Complete codebase &amp; cloud architecture review</li>
-              <li>• Concrete remediation roadmap &amp; priorities</li>
-              <li>• Executive summary for board &amp; leadership</li>
-            </ul>
-          </div>
-          <div class="pt-6 mt-6 border-t theme-border">
-            <a href="#contact" class="text-xs font-mono theme-accent-color font-semibold flex items-center space-x-1 hover:underline">
-              <span>Book an Audit ↗</span>
-            </a>
-          </div>
+        <div class="swiss-card p-6 rounded-xl space-y-3">
+          <span class="font-mono text-neutral-500 uppercase">Model 02</span>
+          <h4 class="text-base font-bold text-neutral-900">Architecture Audit Sprint</h4>
+          <p class="text-neutral-600 leading-relaxed">
+            A 2–4 week intensive evaluation of your cloud infrastructure, reliability bottlenecks, technical debt, and delivery velocity with actionable recommendations.
+          </p>
         </div>
 
-        <!-- Model 3: Technical Mentorship & Coaching -->
-        <div class="theme-card border rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition">
-          <div class="space-y-4">
-            <span class="text-[11px] font-mono px-2.5 py-1 rounded-md theme-badge border font-bold uppercase tracking-wider">
-              Leadership Coaching
-            </span>
-            <h3 class="text-xl font-bold text-white">1-on-1 Executive Mentorship</h3>
-            <p class="text-neutral-300 text-xs sm:text-sm leading-relaxed">
-              Bi-weekly or monthly coaching cadence for new VPs, Engineering Directors, and aspiring technical leaders navigating team scale.
-            </p>
-            <ul class="text-xs text-neutral-400 space-y-2 pt-2 border-t theme-border">
-              <li>• Tactical 1-on-1 problem-solving sessions</li>
-              <li>• Communication frameworks for executive presence</li>
-              <li>• Real-world scenarios &amp; leadership strategy</li>
-            </ul>
-          </div>
-          <div class="pt-6 mt-6 border-t theme-border">
-            <a href="#contact" class="text-xs font-mono theme-accent-color font-semibold flex items-center space-x-1 hover:underline">
-              <span>Start Mentorship ↗</span>
-            </a>
-          </div>
+        <div class="swiss-card p-6 rounded-xl space-y-3">
+          <span class="font-mono text-neutral-500 uppercase">Model 03</span>
+          <h4 class="text-base font-bold text-neutral-900">EM Mentorship &amp; Coaching</h4>
+          <p class="text-neutral-600 leading-relaxed">
+            Bi-weekly or monthly 1-on-1 coaching for Engineering Managers navigating team dynamics, 1-on-1s, hiring calibration, delegation, and delivery cadence.
+          </p>
         </div>
 
       </div>
-
     </section>
 
-    <!-- Schedule & Web Contact Form Section -->
-    <section id="contact" class="space-y-8 scroll-mt-24 border-t theme-border pt-12 pb-8">
-      
-      <div class="border-b theme-border pb-6">
-        <span class="text-xs font-mono uppercase tracking-widest theme-accent-color font-bold">
-          04 // Direct Inquiry
-        </span>
-        <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mt-1">
-          Let's Elevate Your Engineering Capabilities
-        </h2>
-        <p class="text-neutral-400 text-xs sm:text-sm mt-1 max-w-xl">
-          Schedule a direct consultation call or submit a confidential project inquiry below.
-        </p>
+    <!-- Confidential Contact Form & Scheduling (Hardened with Cloudflare Turnstile) -->
+    <section id="contact" class="border-t swiss-border pt-14 pb-12 space-y-8 scroll-mt-24">
+      <div class="border-b swiss-border pb-4">
+        <span class="text-xs font-mono text-neutral-500 uppercase tracking-widest block">04 // Direct Inquiry</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mt-1">Initiate a Conversation</h2>
+        <p class="text-xs sm:text-sm text-neutral-500 mt-1">Schedule directly or submit a confidential project inquiry. No email exposure.</p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        <!-- Option A: Direct Calendar Link Card -->
-        <div class="lg:col-span-5 theme-card border rounded-3xl p-6 sm:p-8 shadow-xl space-y-6">
-          <div class="space-y-2">
-            <span class="text-[11px] font-mono px-2.5 py-1 rounded-md theme-badge border font-bold uppercase tracking-wider">
-              Option A // Immediate Booking
-            </span>
-            <h3 class="text-xl font-bold text-white">Schedule an Intro Call</h3>
-            <p class="text-xs text-neutral-300 leading-relaxed">
-              Skip the back-and-forth email scheduling and book a 30-minute introductory meeting directly on my calendar.
-            </p>
+        <!-- Option A: Direct Reclaim Calendar Link -->
+        <div class="lg:col-span-5 swiss-card p-7 sm:p-8 rounded-2xl space-y-5">
+          <div class="space-y-1">
+            <span class="text-[11px] font-mono uppercase tracking-wider text-neutral-500 font-semibold">Option A // Direct Calendar</span>
+            <h3 class="text-lg font-bold text-neutral-900">Schedule an Intro Call</h3>
+          </div>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Skip scheduling friction and book a 30-minute introductory meeting directly on my calendar via Reclaim AI.
+          </p>
+
+          <div class="space-y-2 text-xs font-mono text-neutral-500 pt-2 border-t swiss-border">
+            <div>✓ Real-time calendar availability</div>
+            <div>✓ Mutual NDA available on request</div>
+            <div>✓ Eastern Time (Richmond, VA)</div>
           </div>
 
-          <div class="space-y-3 pt-2 text-xs text-neutral-400 font-mono">
-            <div class="flex items-center space-x-2">
-              <span class="theme-accent-color">✓</span>
-              <span>Direct calendar availability via Reclaim</span>
-            </div>
-            <div class="flex items-center space-x-2">
-              <span class="theme-accent-color">✓</span>
-              <span>Mutual NDA available on request</span>
-            </div>
-            <div class="flex items-center space-x-2">
-              <span class="theme-accent-color">✓</span>
-              <span>Based in Richmond, VA (Eastern Time)</span>
-            </div>
-          </div>
-
-          <div class="pt-4">
-            <a href="https://app.reclaim.ai/m/erikwebb/flexible-quick-meeting" target="_blank" rel="noopener noreferrer" class="theme-accent-btn w-full inline-flex items-center justify-center space-x-2 text-xs sm:text-sm font-bold px-5 py-3 rounded-xl transition shadow-md">
-              <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
+          <div class="pt-3">
+            <a href="https://app.reclaim.ai/m/erikwebb/flexible-quick-meeting" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center space-x-2 text-xs font-bold text-white bg-neutral-900 hover:bg-black px-5 py-3 rounded-lg transition shadow-sm">
               <span>Open Calendar Scheduler ↗</span>
             </a>
           </div>
         </div>
 
-        <!-- Option B: Clean Web Form (No exposed email) -->
-        <div class="lg:col-span-7 theme-card border rounded-3xl p-6 sm:p-8 shadow-xl">
-          <div class="space-y-2 mb-6">
-            <span class="text-[11px] font-mono px-2.5 py-1 rounded-md theme-badge border font-bold uppercase tracking-wider">
-              Option B // Confidential Form
-            </span>
-            <h3 class="text-xl font-bold text-white">Send a Project Inquiry</h3>
-            <p class="text-xs text-neutral-300 leading-relaxed">
-              Describe your team, timeline, or current technical bottlenecks. Inquiries are reviewed directly by Erik Webb within 1 business day.
-            </p>
+        <!-- Option B: Hardened Confidential Web Form (Turnstile Protected) -->
+        <div class="lg:col-span-7 swiss-card p-7 sm:p-8 rounded-2xl space-y-5">
+          <div class="space-y-1">
+            <span class="text-[11px] font-mono uppercase tracking-wider text-neutral-500 font-semibold">Option B // Confidential Note</span>
+            <h3 class="text-lg font-bold text-neutral-900">Send a Project Inquiry</h3>
           </div>
+          <p class="text-xs text-neutral-600 leading-relaxed">
+            Briefly describe your team, technical challenges, or desired advisory scope. Inquiries are reviewed directly by Erik Webb within one business day.
+          </p>
 
-          <!-- Form Element -->
-          <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4 text-xs">
+          <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4 text-xs pt-1">
             
-            <!-- Honeypot anti-spam field (hidden) -->
+            <!-- Anti-Spam Honeypot (Invisible to humans) -->
             <input type="text" name="honeypot" class="hidden" tabindex="-1" autocomplete="off">
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <!-- Name -->
               <div class="space-y-1.5">
-                <label for="form-name" class="font-mono text-neutral-400 font-semibold">Your Name *</label>
-                <input type="text" id="form-name" name="name" required placeholder="Alex Morgan" class="w-full px-3.5 py-2.5 rounded-xl bg-neutral-900 border theme-border text-neutral-100 placeholder-neutral-600 focus:outline-none focus:border-emerald-500 transition">
+                <label for="form-name" class="font-mono text-neutral-600 font-semibold">Your Name *</label>
+                <input type="text" id="form-name" name="name" required placeholder="Alex Morgan" class="w-full px-3.5 py-2.5 rounded-lg border swiss-border text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-900 transition bg-neutral-50/50">
               </div>
 
-              <!-- Email -->
               <div class="space-y-1.5">
-                <label for="form-email" class="font-mono text-neutral-400 font-semibold">Work Email *</label>
-                <input type="email" id="form-email" name="email" required placeholder="alex@company.com" class="w-full px-3.5 py-2.5 rounded-xl bg-neutral-900 border theme-border text-neutral-100 placeholder-neutral-600 focus:outline-none focus:border-emerald-500 transition">
+                <label for="form-email" class="font-mono text-neutral-600 font-semibold">Work Email *</label>
+                <input type="email" id="form-email" name="email" required placeholder="alex@company.com" class="w-full px-3.5 py-2.5 rounded-lg border swiss-border text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-900 transition bg-neutral-50/50">
               </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <!-- Organization -->
               <div class="space-y-1.5">
-                <label for="form-org" class="font-mono text-neutral-400 font-semibold">Company / Organization</label>
-                <input type="text" id="form-org" name="organization" placeholder="Acme Tech" class="w-full px-3.5 py-2.5 rounded-xl bg-neutral-900 border theme-border text-neutral-100 placeholder-neutral-600 focus:outline-none focus:border-emerald-500 transition">
+                <label for="form-org" class="font-mono text-neutral-600 font-semibold">Company / Organization</label>
+                <input type="text" id="form-org" name="organization" placeholder="Acme Systems" class="w-full px-3.5 py-2.5 rounded-lg border swiss-border text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-900 transition bg-neutral-50/50">
               </div>
 
-              <!-- Primary Focus -->
               <div class="space-y-1.5">
-                <label for="form-service" class="font-mono text-neutral-400 font-semibold">Primary Area of Interest</label>
-                <select id="form-service" name="service" class="w-full px-3.5 py-2.5 rounded-xl bg-neutral-900 border theme-border text-neutral-100 focus:outline-none focus:border-emerald-500 transition">
-                  <option value="Fractional CTO &amp; Advisory">Fractional CTO &amp; Advisory</option>
-                  <option value="Cloud Architecture &amp; Modernization">Cloud Architecture &amp; Modernization</option>
-                  <option value="Engineering Org Development">Engineering Org Development</option>
-                  <option value="Technical Leadership Coaching">Technical Leadership Coaching</option>
-                  <option value="Other Advisory">Other / General Exploration</option>
+                <label for="form-service" class="font-mono text-neutral-600 font-semibold">Primary Area of Interest</label>
+                <select id="form-service" name="service" class="w-full px-3.5 py-2.5 rounded-lg border swiss-border text-neutral-900 focus:outline-none focus:border-neutral-900 transition bg-neutral-50/50">
+                  <option value="Distributed Systems Architecture">Distributed Systems Architecture</option>
+                  <option value="Principal Engineer Advisory">Principal Engineer Guidance</option>
+                  <option value="Engineering Manager Mentorship">Engineering Manager Mentorship</option>
+                  <option value="Sensible AI &amp; SDLC Velocity">Sensible AI &amp; SDLC Velocity</option>
+                  <option value="General Exploration">General Exploration</option>
                 </select>
               </div>
             </div>
 
-            <!-- Message -->
             <div class="space-y-1.5">
-              <label for="form-message" class="font-mono text-neutral-400 font-semibold">Project Overview or Challenge *</label>
-              <textarea id="form-message" name="message" rows="4" required placeholder="Briefly describe your current engineering challenges, team size, technical stack, or desired timeline..." class="w-full px-3.5 py-2.5 rounded-xl bg-neutral-900 border theme-border text-neutral-100 placeholder-neutral-600 focus:outline-none focus:border-emerald-500 transition resize-y"></textarea>
+              <label for="form-message" class="font-mono text-neutral-600 font-semibold">Project Overview or Challenge *</label>
+              <textarea id="form-message" name="message" rows="4" required placeholder="Describe your team size, stack, architecture bottleneck, or timeline..." class="w-full px-3.5 py-2.5 rounded-lg border swiss-border text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-900 transition resize-y bg-neutral-50/50"></textarea>
             </div>
 
-            <!-- Submit Button & Feedback -->
+            <!-- Cloudflare Turnstile Anti-Bot Security Widget -->
+            <div class="pt-1">
+              <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="light"></div>
+            </div>
+
             <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
-              <button type="submit" id="submit-btn" class="theme-accent-btn w-full sm:w-auto inline-flex items-center justify-center space-x-2 font-bold px-6 py-2.5 rounded-xl transition shadow-sm">
+              <button type="submit" id="submit-btn" class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 font-bold px-6 py-2.5 rounded-lg bg-neutral-900 hover:bg-black text-white transition shadow-sm">
                 <span>Send Inquiry</span>
-                <svg aria-hidden="true" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
+                <span aria-hidden="true">→</span>
               </button>
 
               <span id="form-status" class="text-xs font-mono text-neutral-400">
-                Encrypted in transit • No spam guarantee
+                Turnstile hardened • No spam guarantee
               </span>
             </div>
 
           </form>
 
-          <!-- Success State Message (Hidden by default) -->
+          <!-- Success State -->
           <div id="form-success" class="hidden py-8 text-center space-y-3">
-            <div class="w-12 h-12 rounded-2xl theme-badge border mx-auto flex items-center justify-center text-xl font-bold">
+            <div class="w-10 h-10 rounded-full bg-neutral-100 border swiss-border mx-auto flex items-center justify-center text-neutral-900 font-bold text-base">
               ✓
             </div>
-            <h4 class="text-base font-bold text-white">Inquiry Received</h4>
-            <p class="text-xs text-neutral-300 max-w-md mx-auto leading-relaxed">
-              Thank you for reaching out. Your message has been received. Erik will review your notes and respond within one business day.
+            <h4 class="text-base font-bold text-neutral-900">Inquiry Received</h4>
+            <p class="text-xs text-neutral-600 max-w-sm mx-auto leading-relaxed">
+              Thank you for reaching out. Erik will review your inquiry and follow up within one business day.
             </p>
             <div class="pt-2">
-              <button type="button" onclick="resetContactForm()" class="text-xs font-mono theme-accent-color hover:underline">
+              <button type="button" onclick="resetForm()" class="text-xs font-mono text-neutral-900 underline">
                 Send another message ←
               </button>
             </div>
@@ -837,68 +471,35 @@
         </div>
 
       </div>
-
     </section>
 
   </main>
 
   <!-- Footer -->
-  <footer class="border-t theme-border py-8 text-xs text-neutral-500 relative z-10">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center space-x-2">
-        <span class="font-bold text-neutral-300">Nanok Consulting LLC</span>
+  <footer class="border-t swiss-border py-8 text-xs text-neutral-500 bg-white relative z-10">
+    <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center space-x-2 font-mono">
+        <span class="font-bold text-neutral-900">Nanok Consulting LLC</span>
         <span>•</span>
-        <span>Engineering Architecture &amp; Advisory</span>
+        <span>Systems Architecture &amp; Engineering Mentorship</span>
       </div>
 
       <div class="flex items-center space-x-5 font-mono">
-        <a href="https://erikwebb.net" target="_blank" rel="noopener noreferrer" class="text-neutral-400 hover:text-white transition">
-          erikwebb.net <span aria-hidden="true">↗</span>
+        <a href="https://erikwebb.net" target="_blank" rel="noopener noreferrer" class="hover:text-black transition">
+          erikwebb.net ↗
         </a>
-        <a href="https://www.linkedin.com/in/erikwebb" target="_blank" rel="noopener noreferrer" class="text-neutral-400 hover:text-white transition">
-          LinkedIn <span aria-hidden="true">↗</span>
+        <a href="https://www.linkedin.com/in/erikwebb" target="_blank" rel="noopener noreferrer" class="hover:text-black transition">
+          LinkedIn ↗
         </a>
-        <a href="https://github.com/erikwebb" target="_blank" rel="noopener noreferrer" class="text-neutral-400 hover:text-white transition">
-          GitHub <span aria-hidden="true">↗</span>
+        <a href="https://github.com/erikwebb" target="_blank" rel="noopener noreferrer" class="hover:text-black transition">
+          GitHub ↗
         </a>
       </div>
     </div>
   </footer>
 
-  <!-- Theme Switching & Form Handler Scripts -->
+  <!-- Form Script -->
   <script>
-    // Theme Management
-    const validThemes = ['emerald', 'indigo', 'amber', 'mono'];
-
-    function setTheme(theme) {
-      if (!validThemes.includes(theme)) theme = 'emerald';
-      document.documentElement.setAttribute('data-theme', theme);
-      try {
-        localStorage.setItem('nanok_theme', theme);
-      } catch (e) {}
-
-      // Update active button state
-      document.querySelectorAll('[data-theme-btn]').forEach(btn => {
-        const isCurrent = btn.getAttribute('data-theme-btn') === theme;
-        btn.classList.toggle('text-white', isCurrent);
-        btn.classList.toggle('bg-neutral-800', isCurrent);
-        btn.classList.toggle('text-neutral-400', !isCurrent);
-      });
-    }
-
-    // Initialize Theme from Storage or Default
-    (function initTheme() {
-      try {
-        const saved = localStorage.getItem('nanok_theme');
-        if (saved && validThemes.includes(saved)) {
-          setTheme(saved);
-          return;
-        }
-      } catch (e) {}
-      setTheme('emerald');
-    })();
-
-    // Contact Form Handler
     async function handleContactSubmit(event) {
       event.preventDefault();
       const form = document.getElementById('contact-form');
@@ -907,8 +508,8 @@
       const successEl = document.getElementById('form-success');
 
       submitBtn.disabled = true;
-      submitBtn.classList.add('opacity-60', 'cursor-not-allowed');
-      statusEl.textContent = 'Submitting inquiry...';
+      submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+      statusEl.textContent = 'Verifying and sending...';
 
       const formData = new FormData(form);
       const payload = Object.fromEntries(formData.entries());
@@ -928,16 +529,15 @@
         } else {
           statusEl.textContent = data.error || 'Submission error. Please try again.';
           submitBtn.disabled = false;
-          submitBtn.classList.remove('opacity-60', 'cursor-not-allowed');
+          submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
         }
       } catch (err) {
-        // Graceful fallback display
         form.classList.add('hidden');
         successEl.classList.remove('hidden');
       }
     }
 
-    function resetContactForm() {
+    function resetForm() {
       const form = document.getElementById('contact-form');
       const submitBtn = document.getElementById('submit-btn');
       const statusEl = document.getElementById('form-status');
@@ -947,8 +547,11 @@
       form.classList.remove('hidden');
       successEl.classList.add('hidden');
       submitBtn.disabled = false;
-      submitBtn.classList.remove('opacity-60', 'cursor-not-allowed');
-      statusEl.textContent = 'Encrypted in transit • No spam guarantee';
+      submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+      statusEl.textContent = 'Turnstile hardened • No spam guarantee';
+      if (window.turnstile) {
+        window.turnstile.reset();
+      }
     }
   </script>
 
